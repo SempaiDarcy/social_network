@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {PostsType} from "../../../redux/state";
@@ -12,11 +12,11 @@ const MyPosts = (props: MyPostsType) => {
     let postsElements = props.posts.map(el => {
         return <Post message={el.message} likesCount={el.likesCount}/>
     })
-    let newPostElement = React.createRef()
+    let newPostElement = React.createRef<HTMLTextAreaElement>()
     const addPost = () => {
-        debugger
-        let text = newPostElement.current.value;
-        props.addPost(text)
+        if (newPostElement.current){
+            props.addPost(newPostElement.current.value)
+        }
     }
     return (
         <div className={s.postsBlock}>

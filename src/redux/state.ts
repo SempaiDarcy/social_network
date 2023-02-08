@@ -1,5 +1,3 @@
-import {useState} from "react";
-
 export type PostsType = {
     id: number,
     message: string,
@@ -45,14 +43,13 @@ export const state: StateType = {
     }
 
 }
-export let addPost = (postMessage:string) => {
-    let newPost = {
-        id:5,
+export const addPost = (postMessage:string) => {
+    const newPost:PostsType = {
+        id:new Date().getTime(),
         message:postMessage,
         likesCount:0
     }
     // const [posts,setPosts]=useState(state.profilePage.posts)
     state.profilePage.posts.push(newPost)
     // setPosts([...posts,newPost])
-
 }
