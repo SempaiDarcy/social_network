@@ -1,3 +1,5 @@
+import {useState} from "react";
+
 export type PostsType = {
     id: number,
     message: string,
@@ -10,17 +12,17 @@ export type DialogsType = {
 export type MessagesType = {
     message: string
 }
-
+export type DialogsPageType = {
+    dialogs: DialogsType[]
+    messages: MessagesType[]
+}
+export type ProfilePageType = {
+    posts: PostsType[]
+}
 
 export type StateType = {
-    profilePage: {
-        posts: PostsType[]
-
-    }
-    dialogsPage: {
-        dialogs: DialogsType[]
-        messages: MessagesType[]
-    }
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
 }
 export const state: StateType = {
     profilePage: {
@@ -41,5 +43,16 @@ export const state: StateType = {
             {message: 'How are you?'},
             {message: 'I am fine'}]
     }
+
+}
+export let addPost = (postMessage:string) => {
+    let newPost = {
+        id:5,
+        message:postMessage,
+        likesCount:0
+    }
+    // const [posts,setPosts]=useState(state.profilePage.posts)
+    state.profilePage.posts.push(newPost)
+    // setPosts([...posts,newPost])
 
 }
