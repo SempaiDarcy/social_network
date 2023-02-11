@@ -1,6 +1,6 @@
 import React from 'react';
 import headerClasses from './Header.module.css'
-import logo from './../picture/Breaking-Bad-Logo-Transparent-PNG.png'
+import logo from '../picture/Breaking-Bad-Logo-Transparent-PNG.png'
 
 type HeaderType = {
     titleError: string

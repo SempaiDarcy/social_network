@@ -94,14 +94,14 @@ export let store= {
                     id: v1(),
                     likeCounts: 10,
                     mes: 'Hi',
-                    photo: "https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg",
+                    photo: "https://oir.mobi/uploads/posts/2022-07/1658215253_3-oir-mobi-p-vo-vse-tyazhkie-art-3.jpg",
                     errorMes: 'Image not found'
                 },
                 {
                     id: v1(),
                     likeCounts: 15,
                     mes: "It's my first post",
-                    photo: "https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg",
+                    photo: "https://phonoteka.org/uploads/posts/2021-07/1625748339_23-phonoteka-org-p-dzhessi-pinkman-art-krasivo-25.jpg",
                     errorMes: 'Image not found'
                 },
             ],
