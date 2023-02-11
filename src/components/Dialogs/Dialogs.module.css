@@ -1,0 +1,34 @@
+/*Dialogs*/
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogsItems {
+    padding: 10px;
+
+}
+.dialogsItems a {
+    text-decoration: none;
+    color: black;
+}
+
+.dialogsItems .active a:focus{
+    /*font-weight: bold;*/
+    color: white !important;
+}
+
+/*Messages*/
+.messages {
+    padding: 10px;
+}
+
+.message {
+    margin-top: 15px;
+}
+
+span img{
+    width: 30px;
+    margin-left: 10px;
+    border-radius: 30%;
+}
