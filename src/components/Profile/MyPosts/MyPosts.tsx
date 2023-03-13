@@ -1,48 +1,46 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import {Post, PostType} from "./Posts/Post";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profilePage-reducer";
 
-
-export type MyPostsType = {
+type MyPostsType = {
+    updateNewPostText: (text: string) => void
+    addPost: () => void
+    posts: ProfilePageType
+}
+export type ProfilePageType = {
     posts: PostType[]
     newPostText: string
 }
-type MyPostsDispatchType = {
-    dispatch: (action: any) => void
-    postType: MyPostsType
-}
 
-
-const MyPosts = (props: MyPostsDispatchType) => {
+const MyPosts = (props: MyPostsType) => {
+    const {updateNewPostText, addPost, posts} = props
     let newText = React.createRef<HTMLTextAreaElement>()
+
     const addPostHandler = () => {
         if (newText.current?.value?.trim() !== '') {
-            props.dispatch(addPostActionCreator())
+            addPost()
+        } else {
+            updateNewPostText('')
         }
     }
 
     const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let text = newText.current?.value
-        if (text){
-            let action = updateNewPostTextActionCreator(text)
-            props.dispatch(action)
-        }
-
+        updateNewPostText(e.currentTarget?.value)
     }
+
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newText} value={props.postType.newPostText} onChange={onChangeTextarea}/>
+                    <textarea ref={newText} value={posts.newPostText} onChange={onChangeTextarea}/>
                 </div>
                 <div>
                     <button onClick={addPostHandler}>Add posts</button>
                 </div>
             </div>
             <div className={s.posts}>
-                <Post posts={props.postType.posts}/>
+                <Post posts={posts.posts}/>
             </div>
         </div>
     );

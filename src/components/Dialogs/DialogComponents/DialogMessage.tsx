@@ -1,37 +1,38 @@
 import React, {ChangeEvent} from 'react';
 import s from "../Dialogs.module.css";
-import {DialogType} from "../Dialogs";
-import {sendMessageDialogs, updateMessageDialogs} from "../../../redux/messagesPage-reducer";
+import {messageType} from "../Dialogs";
 
 
 type DialogMessageType = {
-    data: DialogType
-    dispatch: (action: any) => void
+    posts:messageType[]
+    updateNewMessageText:(text:string)=>void
+    addMessageText:() => void
+    newDialogText:string
 }
 export const DialogMessage = (props: DialogMessageType) => {
-    let newMessage = props.data.newMessageText
+    const {posts,updateNewMessageText, addMessageText, newDialogText} = props
+    let newText = newDialogText
     const addMessage = () => {
-        if (newMessage.trim() !== '') {
-            props.dispatch(sendMessageDialogs())
+        if (newText.trim() !== '') {
+            addMessageText()
+        }
+        else  {
+            updateNewMessageText('')
         }
     }
     const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let newMessage = e.target?.value
-        if (newMessage) {
-            let action = updateMessageDialogs(newMessage)
-            props.dispatch(action)
-        }
+        updateNewMessageText(e.currentTarget?.value)
     }
     return (
         <div className={s.messages}>
-            {props.data.messages.map(d => {
+            {props.posts.map(d => {
                 return (
                     <div className={s.message} key={d.id}>
                         {d.message}
                     </div>
                 )
             })}
-            <textarea value={newMessage} onChange={onChangeTextarea}></textarea>
+            <textarea value={newText} onChange={onChangeTextarea}></textarea>
             <button onClick={addMessage}>Send</button>
         </div>
     )

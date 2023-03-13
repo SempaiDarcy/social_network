@@ -1,12 +1,20 @@
-import {DialogType} from "../components/Dialogs/Dialogs";
+import {messageType, userNameType} from "../components/Dialogs/Dialogs";
+import {v1} from "uuid";
+
+export type DialogType = {
+    messages:messageType[]
+    userName:userNameType[]
+    newMessageText:string
+}
 export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 export const SEND_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
 
 let initialState = {
     messages: [
-        {id: 1, message: 'Hi'},
-        {id: 2, message: 'How are you?'},
-        {id: 3, message: 'I am fine'}
+        {id: '1', message: 'Hi'},
+        {id: '2', message: 'How are you?'},
+        {id: '3', message: 'I am fine'},
+        {id: '4', message: 'I want to buy a car'}
     ],
     userName: [
         {
@@ -37,13 +45,14 @@ let initialState = {
 const messagesPageReducer = (state: DialogType = initialState, action: any): DialogType => {
     switch (action.type){
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newMessageText
-            return state
+            return {
+                ...state, newMessageText: action.newMessageText
+            }
         case SEND_NEW_MESSAGE_TEXT:
-            let newMessage = {id: 5, message: state.newMessageText}
-            state.newMessageText = ''
-            state.messages.push(newMessage)
-            return state
+            let newMessage = {id: v1(), message: state.newMessageText}
+            return {
+                ...state, messages: [...state.messages, newMessage], newMessageText: ''
+            }
         default:
             return state
     }

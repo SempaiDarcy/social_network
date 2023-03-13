@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {MyPostsType} from "../components/Profile/MyPosts/MyPosts";
+import {ProfilePageType} from "../components/Profile/MyPosts/MyPosts";
 
 export const ADD_POST = 'ADD-POST'
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -24,7 +24,7 @@ let initialState = {
     newPostText: ''
 }
 
-const profilePageReducer = (state: MyPostsType = initialState, action: any): MyPostsType => {
+const profilePageReducer = (state: ProfilePageType = initialState, action: any): ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {
