@@ -1,8 +1,7 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
-
+import wall from '../../../picture/pustynya.jpg'
 type ProfileInfoType = {
-    img: string
     titleError: string
 }
 export const ProfileInfo = (props:ProfileInfoType) => {
@@ -10,7 +9,7 @@ export const ProfileInfo = (props:ProfileInfoType) => {
         <div>
             <div>
                 <img
-                    src='https://c4.wallpaperflare.com/wallpaper/316/701/142/breaking-bad-tv-wallpaper-preview.jpg'
+                    src={wall}
                     alt={props.titleError}/>
             </div>
             <div className={s.descriptionBlock}>

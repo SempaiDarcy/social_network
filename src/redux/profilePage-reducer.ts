@@ -34,12 +34,14 @@ const profilePageReducer = (state: ProfilePageType = initialState, action: any):
                 photo: "https://citaty.info/files/characters/82733_0.jpg",
                 errorMes: 'Image not found'
             }
-            state.posts.push(newPost)
-            state.newPostText = ''
-            return state
+            return  {
+                ...state,posts: [...state.posts, newPost],newPostText:''
+            }
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText
-            return state
+            // state.newPostText = action.newText
+            return {
+                ...state,newPostText:action.newText
+            }
         default:
             return state
     }
@@ -47,7 +49,6 @@ const profilePageReducer = (state: ProfilePageType = initialState, action: any):
 
 export const addPostActionCreator = () => ({type: ADD_POST})
 export const updateNewPostTextActionCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
-
 
 export default profilePageReducer
 
