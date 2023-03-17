@@ -26,9 +26,8 @@
 .message {
     margin-top: 15px;
 }
-
-span img{
-    width: 30px;
-    margin-left: 10px;
-    border-radius: 30%;
+.img   {
+        width: 50px;
+        margin-left: 10px;
+        border-radius: 100%;
 }

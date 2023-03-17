@@ -6,8 +6,8 @@ import {Route} from "react-router-dom";
 import {path} from "./components/Constans/Constans";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {Profile} from "./components/Profile/Profile";
-import {logDOM} from "@testing-library/react";
 import store from "./redux/redux-store";
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 const App = () => {
     console.log(store)
@@ -18,10 +18,10 @@ const App = () => {
             <div className='app-wrapper-content'>
                 <Route path={path.PROFILE} render={() => <Profile/>}/>
                 <Route path={path.DIALOGS} render={()=><DialogsContainer/>}/>
+                <Route path={path.USERS} render={()=><UsersContainer/>}/>
             </div>
         </div>
     );
 }
-
 export default App;
 
