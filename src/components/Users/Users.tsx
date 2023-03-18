@@ -1,72 +1,44 @@
 import React from 'react';
 import s from './Users.module.css'
-import {v1} from "uuid";
+import axios from "axios";
+import userPhoto from '../assets/UserPhoto.jpg'
 
 export type UserType = {
-    id: string,
-    photoUrl: string,
-    followed: boolean,
-    fullName: string,
-    status: string,
-    location: {
-        city: string,
-        country: string
+    name: string
+    id: number
+    followed: boolean
+    uniqueUrlName: string | null
+    "photos": {
+        small: null | string,
+        large: null | string
     }
+    "status": null,
 }
 
 export type UsersStateType = {
-    users:UserType[]
+    users: UserType[]
 }
 
 type UsersPropsType = {
     users: UserType[];
-    follow: (userId: string) => void
-    unfollow: (userId: string) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
     setUsers: (users: UserType[]) => void
 }
 const Users = (props: UsersPropsType) => {
-    if(props.users.length===0) {
-        props.setUsers([
-            {
-                id: v1(),
-                photoUrl: 'https://uznayvse.ru/person/nagiev/nagiev01.jpg',
-                followed: true,
-                fullName: 'Walter Wait',
-                status: 'I am a boss',
-                location: {city: 'Albucerke', country: 'USA'}
-            },
-            {
-                id: v1(),
-                photoUrl: 'https://uznayvse.ru/person/nagiev/nagiev01.jpg',
-                followed: false,
-                fullName: 'Jessy Pinkman',
-                status: 'I am a assistant',
-                location: {city: 'Albucerke', country: 'USA'}
-            },
-            {
-                id: v1(),
-                photoUrl: 'https://uznayvse.ru/person/nagiev/nagiev01.jpg',
-                followed: true,
-                fullName: 'Hank Schreider',
-                status: 'I am a boss',
-                location: {city: 'Albucerke', country: 'USA'}
-            },
-            {
-                id: v1(),
-                photoUrl: 'https://uznayvse.ru/person/nagiev/nagiev01.jpg',
-                followed: false,
-                fullName: 'Soul Goodman',
-                status: 'I am a boss of the boss',
-                location: {city: 'Albucerke', country: 'USA'}
-            },
-        ])
+    if (props.users.length === 0) {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            debugger
+            props.setUsers(response.data.items);
+        })
+
     }
     return <div>
         {
             props.users.map(el => <div key={el.id}>
                 <span>
                     <div>
-                        <img className={s.userPhoto} src={el.photoUrl}/>
+                        <img className={s.userPhoto} src={el.photos.small !== null ? el.photos.small : userPhoto}/>
                     </div>
                     <div>
                         {el.followed
@@ -80,12 +52,12 @@ const Users = (props: UsersPropsType) => {
                 </span>
                 <span>
                     <span>
-                        <div>{el.fullName}</div>
+                        <div>{el.name}</div>
                         <div>{el.status}</div>
                     </span>
                     <span>
-                        <div>{el.location.city}</div>
-                        <div>{el.location.country}</div>
+                        <div>{'el.location.city'}</div>
+                        <div>{'el.location.country'}</div>
                     </span>
                 </span>
             </div>)
