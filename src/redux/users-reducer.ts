@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import users, {UsersStateType, UserType} from "../components/Users/Users";
+import users, {UsersStateType, UserType} from "../components/Users/UsersС";
 
 export const FOLLOW = 'FOLLOW'
 export const UNFOLLOW = 'UNFOLLOW'
