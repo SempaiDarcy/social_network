@@ -7,7 +7,7 @@ import {path} from "./components/Constans/Constans";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {Profile} from "./components/Profile/Profile";
 import store from "./redux/redux-store";
-import {UsersContainer} from "./components/Users/UsersContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 const App = () => {
     console.log(store)
