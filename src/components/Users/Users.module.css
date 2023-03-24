@@ -8,5 +8,7 @@
 }
 .selectedPage {
     font-weight: bold;
-    padding: 10px;
+}
+span {
+    padding-left: 10px;
 }
