@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import {Post, PostType} from "./Posts/Post";
+import {ProfileUsers} from "../../../redux/profilePage-reducer";
 
 type MyPostsType = {
     updateNewPostText: (text: string) => void
@@ -10,6 +11,7 @@ type MyPostsType = {
 export type ProfilePageType = {
     posts: PostType[]
     newPostText: string
+    profile:ProfileUsers
 }
 
 const MyPosts = (props: MyPostsType) => {
