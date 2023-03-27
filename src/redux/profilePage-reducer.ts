@@ -66,7 +66,7 @@ let initialState = {
         "lookingForAJob": true,
         "lookingForAJobDescription": 'asdfasdf',
         "fullName": 'fsadfasdf',
-        "userId":3,
+        "userId":2,
         "photos": {
             "small": 'asdfasdfasdf',
             "large": 'sadfsadf',

@@ -1,6 +1,10 @@
 .descriptionBlock{
     padding: 10px;
 }
-img {
+.wall {
     width: 100%;
+}
+.userPhoto {
+    width: 20%;
+    border-radius: 50%;
 }

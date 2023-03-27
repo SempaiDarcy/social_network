@@ -16,7 +16,7 @@ const App = () => {
             <Header titleError={'Image is not found'}/>
             <NavbarContainer/>
             <div className='app-wrapper-content'>
-                <Route path={path.PROFILE} render={() => <ProfileContainer/>}/>
+                <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
                 <Route path={path.DIALOGS} render={()=><DialogsContainer/>}/>
                 <Route path={path.USERS} render={()=><UsersContainer/>}/>
             </div>
