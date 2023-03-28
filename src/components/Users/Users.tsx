@@ -34,9 +34,9 @@ export const Users = (props:PropsType) => {
     }
     return <div>
         <div className={s.currentPages}>
-            {pages.slice(0,50).map(el => {
+            {pages.slice(0,10).map(el => {
                 return <span className={props.currentPage === el ? s.selectedPage : ''}
-                             onClick={(e) => {
+                             onClick={() => {
                                  props.onPageChanged(el)
                              }}>{el}</span>
             })}
@@ -47,7 +47,7 @@ export const Users = (props:PropsType) => {
                 <span>
                     <div>
                         <NavLink to={'/profile/' + el.id}><img className={s.userPhoto}
-                                src={el.photos.small !== null ? el.photos.small : userPhoto}/>
+                                src={el.photos.small !== null ? el.photos.small : userPhoto} alt={''}/>
                         </NavLink>
                     </div>
                     <div>
