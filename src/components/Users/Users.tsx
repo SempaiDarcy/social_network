@@ -15,26 +15,26 @@ export type UserType = {
     "status": null,
 }
 type PropsType = {
-    users:UserType[]
-    onPageChanged:(pageNumber:number)=>void
-    pageSize:number
-    totalUsersCount:number
-    follow:(userId:number)=>void
-    unfollow:(userId:number)=>void
-    setUsers:(users: UserType[])=>void
-    currentPage:number
-    setCurrentPage:(currentPage:number)=>void
-    setTotalUsersCount:(totalUsersCount:number)=>void
+    users: UserType[]
+    onPageChanged: (pageNumber: number) => void
+    pageSize: number
+    totalUsersCount: number
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    setUsers: (users: UserType[]) => void
+    currentPage: number
+    setCurrentPage: (currentPage: number) => void
+    setTotalUsersCount: (totalUsersCount: number) => void
 }
-export const Users = (props:PropsType) => {
-    let pagesCount = Math.ceil(props.totalUsersCount/props.pageSize)
+export const Users = (props: PropsType) => {
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = [];
-    for (let i = 1; i<=pagesCount;i++){
+    for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
     return <div>
         <div className={s.currentPages}>
-            {pages.slice(0,10).map(el => {
+            {pages.slice(0, 10).map(el => {
                 return <span className={props.currentPage === el ? s.selectedPage : ''}
                              onClick={() => {
                                  props.onPageChanged(el)
@@ -47,7 +47,8 @@ export const Users = (props:PropsType) => {
                 <span>
                     <div>
                         <NavLink to={'/profile/' + el.id}><img className={s.userPhoto}
-                                src={el.photos.small !== null ? el.photos.small : userPhoto} alt={''}/>
+                                                               src={el.photos.small !== null ? el.photos.small : userPhoto}
+                                                               alt={''}/>
                         </NavLink>
                     </div>
                     <div>

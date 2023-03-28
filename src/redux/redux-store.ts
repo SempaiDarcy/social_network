@@ -8,10 +8,10 @@ import authReducer from "./auth-reducer";
 
 let reducers = combineReducers({
     navbar: navbarReducer,
-    profilePage:profilePageReducer,
-    messagesPage:messagesPageReducer,
-    usersPage:usersReducer,
-    auth:authReducer
+    profilePage: profilePageReducer,
+    messagesPage: messagesPageReducer,
+    usersPage: usersReducer,
+    auth: authReducer
 })
 
 let store = createStore(reducers);
