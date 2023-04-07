@@ -2,6 +2,7 @@ import React from 'react';
 import s from "./Users.module.css";
 import userPhoto from "../assets/UserPhoto.jpg";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 export type UserType = {
     name: string
@@ -32,6 +33,7 @@ export const Users = (props: PropsType) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+
     return <div>
         <div className={s.currentPages}>
             {pages.slice(0, 10).map(el => {
@@ -54,10 +56,27 @@ export const Users = (props: PropsType) => {
                     <div>
                         {el.followed
                             ? <button onClick={() => {
+                                axios.get(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`,{
+                                    withCredentials:true
+                                }).then(response => {
+                                        if( response.data.resultCode==0){
+                                            props.unfollow(el.id)
+                                        }
+                                    })
                                 props.unfollow(el.id)
+
                             }}>Follow</button>
                             : <button onClick={() => {
-                                props.follow(el.id)
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`,{},{
+                                    withCredentials:true
+                                })
+                                    .then(response => {
+                                       if( response.data.resultCode==0){
+                                            props.follow(el.id)
+                                        }
+                                    })
+
+
                             }}>Unfollow</button>}
                     </div>
                 </span>
