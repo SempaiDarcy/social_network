@@ -7,7 +7,8 @@ import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import store from "./redux/redux-store";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import UsersContainer from "./components/Users/UsersContainer";
+import {UserContainerConnect} from "./components/Users/UsersContainer";
+
 
 
 const App = () => {
@@ -19,7 +20,7 @@ const App = () => {
             <div className='app-wrapper-content'>
                 <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
                 <Route path={path.DIALOGS} render={() => <DialogsContainer/>}/>
-                <Route path={path.USERS} render={() => <UsersContainer/>}/>
+                <Route path={path.USERS} render={() => <UserContainerConnect/>}/>
             </div>
         </div>
     );
