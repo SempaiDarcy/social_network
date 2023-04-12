@@ -6,7 +6,7 @@ import {path} from "./components/Constans/Constans";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import store from "./redux/redux-store";
 import ProfileContainer from "./components/Profile/ProfileContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
+import  {HeaderConnect} from "./components/Header/HeaderContainer";
 import {UserContainerConnect} from "./components/Users/UsersContainer";
 
 
@@ -15,7 +15,7 @@ const App = () => {
     console.log(store)
     return (
         <div className='app-wrapper'>
-            <HeaderContainer/>
+            <HeaderConnect/>
             <NavbarContainer/>
             <div className='app-wrapper-content'>
                 <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>

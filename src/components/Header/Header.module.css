@@ -1,6 +1,9 @@
 .header {
     grid-area: h;
     background-color: #0f283d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .header img {
@@ -8,8 +11,11 @@
     height: 60px;
 }
 .loginBlock{
-    float: right;
 }
 .loginBlock a {
+    color: white;
+}
+.hello {
+    padding-right: 10px;
     color: white;
 }

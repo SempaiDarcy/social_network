@@ -4,15 +4,16 @@ import wall from '../../../assets/picture/pustynya.jpg'
 import {ProfileUsers} from "../../../../redux/profilePage-reducer";
 import Preloader from "../../../common/Preloader/Preloader";
 import user from './../../../assets/UserPhoto.jpg'
+
 type ProfileInfoType = {
     titleError: string
-    profile:ProfileUsers
+    profile: ProfileUsers
 }
-export const ProfileInfo = (props:ProfileInfoType) => {
-    if(!props.profile){
-         return <Preloader/>
+export const ProfileInfo = (props: ProfileInfoType) => {
+    if (!props.profile) {
+        return <Preloader/>
     }
-
+    console.log(props.profile)
     return (
         <div>
             <div className={s.wall}>
@@ -22,7 +23,9 @@ export const ProfileInfo = (props:ProfileInfoType) => {
             </div>
             <h1>FullName: {props.profile.fullName}</h1>
             <div className={s.descriptionBlock}>
-                {props.profile.photos.small? <img className={s.userPhoto} src={props.profile.photos.small} alt={''}/>:<img className={s.userPhoto} src={user} alt={'image not found'}/>}
+                {props.profile.photos.small
+                    ? <img className={s.userPhoto} src={props.profile.photos.small} alt={'img'}/>
+                    : <img className={s.userPhoto} src={user} alt={'image not found'}/>}
                 <div>
                     <h2>Oбо мне:</h2>
                     <span>{props.profile.aboutMe}</span>

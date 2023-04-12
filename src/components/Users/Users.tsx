@@ -23,8 +23,6 @@ type PropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     currentPage: number
-    setCurrentPage: (currentPage: number) => void
-    isFetching:boolean
     followingInProgress:number[]
 }
 export const Users = (props: PropsType) => {

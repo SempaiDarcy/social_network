@@ -1,19 +1,23 @@
 import React from 'react';
-import headerClasses from './Header.module.css'
+import s from './Header.module.css'
 import logo from '../assets/picture/Breaking-Bad-Logo-Transparent-PNG.png'
 import {NavLink} from "react-router-dom";
+import {AuthStateType} from "../../redux/auth-reducer";
 
 type HeaderPropsType = {
-    isAuth:boolean,
-    login:string|null
+    authUserData:AuthStateType
 }
 export const Header = (props:HeaderPropsType) => {
+    console.log(props.authUserData.login)
     return (
-        <header className={headerClasses.header}>
+        <header className={s.header}>
             <img src={logo} alt={'just img'}/>
 
-            <div className={headerClasses.loginBlock}>
-                <NavLink to={'/login'}>{props.isAuth?props.login:'Login'}</NavLink>
+            <div className={s.loginBlock}>
+                {
+                    props.authUserData.isAuth ?<div className={s.hello}>WELCOME,  {props.authUserData.login}</div>
+                       : <NavLink to={'/login'}>Login</NavLink>
+                }
             </div>
         </header>
     );
