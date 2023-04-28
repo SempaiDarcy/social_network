@@ -1,0 +1,32 @@
+.settingsContainer{
+    display: flex;
+    flex-direction: row;
+}
+.sidebar{
+    width: 30%;
+}
+.settings{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    color: #006d77;
+    margin: 20px 10px 10px 10px;
+
+}
+.inputPersonalDataContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: ghostwhite;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0,0,0, .2);
+    padding: 10px;
+}
+.labelItem{
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.saveButtonContainer{
+    align-self: flex-end;
+    margin: 10px;
+}

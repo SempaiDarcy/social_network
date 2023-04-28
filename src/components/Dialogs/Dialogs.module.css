@@ -1,33 +1,43 @@
-/*Dialogs*/
+.dialogsContainer{
+    display: flex;
+    flex-direction: row;
+}
 .dialogs {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+.sidebar{
+    width: 30%;
+}
+
+.dialogsMessages {
 }
 
 .dialogsItems {
+    margin: 20px 10px 10px 10px;
+    display: flex;
+    background: ghostwhite;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0,0,0, .2);
+}
+
+.addDialogContainer {
+    background: ghostwhite;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0,0,0, .2);
+    margin: 20px 10px 10px 10px;
     padding: 10px;
-
+    display: flex;
+    flex-direction: column;
 }
-.dialogsItems a {
-    text-decoration: none;
-    color: black;
-}
-
-.dialogsItems .active a:focus{
-    /*font-weight: bold;*/
-    color: white !important;
-}
-
-/*Messages*/
-.messages {
-    padding: 10px;
-}
-
-.message {
-    margin-top: 15px;
-}
-.img   {
-        width: 50px;
-        margin-left: 10px;
-        border-radius: 100%;
+.messageInput {
+    background-color: transparent;
+    width: 99%;
+    height: 80px;
+    border: 2px solid #D3CDD7;
+    border-radius: 5px;
+    column-count: auto;
+    resize: none;
+    outline: none;
 }

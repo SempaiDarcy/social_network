@@ -1,35 +1,32 @@
-import React from 'react';
-import {Header} from "./Header";
+import React from "react";
+import Header from "./Header";
 import {connect} from "react-redux";
-import {AuthStateType, setAuthUserData} from "../../redux/auth-reducer";
-import {AppRootStateType} from "../../redux/redux-store";
-import {authAPI} from "../../api/api";
+import {stateType} from "../../bll/redux-store";
+import {logoutTC} from "../../bll/reducers/authReducer";
+import {getIsAuth, getUserLogin} from "../../bll/selectors/authSelectors";
 
-type PropsType = {
-    setAuthUserData: (id: string, login: string, email:string) => void
-    authUserData: AuthStateType
+type mapStateToPropsType = {
+    isAuth: boolean
+    login: string
+    avatar: string
 }
-
-class HeaderContainer extends React.Component<PropsType,AuthStateType> {
-    componentDidMount() {
-        authAPI.me().then((response) => {
-            if (response.data.resultCode === 0) {
-                let {id, login, email} = response.data.data
-                this.props.setAuthUserData(id,login,email)
-            }
-        })
-    }
-
-    render() {
-        return <Header authUserData={this.props.authUserData}/>;
-    }
+type mapDispatchToPropsType = {
+    logoutTC: () => void
 }
-
-const mapStateToProps = (state: AppRootStateType) => {
+const mapStateToProps = (state: stateType): mapStateToPropsType => {
     return {
-        authUserData:state.auth
+        isAuth: getIsAuth(state),
+        login: getUserLogin(state),
+        avatar: state.profilePage.profile.photos.large
     }
 }
 
-export const HeaderConnect = connect(mapStateToProps, {setAuthUserData})(HeaderContainer)
+type HeaderContainerType = mapStateToPropsType & mapDispatchToPropsType
+class HeaderContainer extends React.Component<HeaderContainerType>{
+    render() {
+        return <Header {...this.props}/>
+    }
+}
 
+
+export default connect(mapStateToProps, {logoutTC})(HeaderContainer)

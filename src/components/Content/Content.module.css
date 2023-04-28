@@ -1,0 +1,27 @@
+
+.containerInfoAndPosts {
+    display: flex;
+    flex-direction: row;
+}
+
+.containerInfo {
+    width: 30%;
+}
+
+.containerPosts {
+    width: 40%;
+}
+
+.headerContent{
+    width: 101%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.sidebar {
+    width: 20%;
+}
+
+
+
+

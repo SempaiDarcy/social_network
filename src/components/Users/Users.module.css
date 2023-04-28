@@ -1,14 +1,17 @@
-.userPhoto {
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
+.usersContainer{
+    display: flex;
+    margin: 10px 0;
+
 }
-.currentPages {
-    cursor: pointer;
+.sidebar{
+    width: 30%;
 }
-.selectedPage {
-    font-weight: bold;
+.usersCards{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
 }
-span {
-    padding-left: 10px;
+.usersCards nav{
+    align-self: center;
 }
+

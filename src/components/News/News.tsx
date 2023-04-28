@@ -2,9 +2,8 @@ import React from 'react';
 
 export const News = () => {
     return (
-        <div>
+        <div className={"content"}>
             News
         </div>
-    );
-};
-
+    )
+}
