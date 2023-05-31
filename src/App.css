@@ -1,54 +1,27 @@
-
 .app-wrapper {
   display: grid;
-  margin: 0 auto;
-  background-color: #edf6f9;
+  width: 1700px;
   grid-template-areas:
-  'header  nav'
-  'content content ';
-  grid-template-rows: 70px 1fr;
+    "h h "
+    "n c";
+  grid-template-rows: 200px 1fr;
   grid-template-columns: 2fr 10fr;
-
+  padding: 0 20px 0 20px;
+  grid-gap: 10px;
 }
-
-.inputTextArea{
-  background-color: transparent;
-  width: auto;
-  height:80px;
-  border: 2px solid #edf6f9;
-  border-radius: 5px;
-  margin: 1em;
-  column-count: auto;
-  resize: none;
-  outline: none;
+.header {
+  grid-area: h;
+  background-color: rgb(165, 5, 5);
 }
-
-
-.button{
-  width: 150px;
-  height: 40px;
-  line-height: 40px;
-  background-color: #83c5be;
-  border: 2px solid #006d77;
-  border-radius: 5px;
-  cursor: pointer;
-  color: #006d77;
-  display: block;
-  font-size: 16px;
-  font-weight: bold;
+.nav {
+  grid-area: n;
+  background-color: rgb(49, 41, 56);
 }
-.button:hover{
-  color: #edf6f9;
-  background-color: #006d77;
-  border: 2px solid #006d77;
+.content {
+  grid-area: c;
+  background-color: red;
 }
-.content{
-  grid-area: content;
-  background-color: #e9ecef;
-  min-height: 100vh;
-  height: max-content;
-  border-radius: 5px;
-  margin-right: 10px;
-  margin-top: 10px;
+.content img {
+  width: 80%;
+  height: 60%;
 }
-

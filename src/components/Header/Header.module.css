@@ -1,0 +1,6 @@
+.header {
+  display: grid;
+}
+.header img {
+  width: 15%;
+}
