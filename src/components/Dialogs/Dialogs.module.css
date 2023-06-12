@@ -1,0 +1,10 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  padding: 10px;
+  font-size: 25px;
+}
+.dialogs_items .active {
+  cursor: pointer;
+  color: blue;
+}

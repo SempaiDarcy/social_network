@@ -2,7 +2,7 @@ import s from "./Post.module.css";
 
 export type PropsType = {
   message: string;
-  likes: string;
+  likes: number;
 };
 export const Post = (props: PropsType) => {
   return (
