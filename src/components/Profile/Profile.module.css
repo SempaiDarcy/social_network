@@ -1,0 +1,7 @@
+.content {
+  grid-area: c;
+  background-color: rgb(242, 242, 242);
+  /* background-image: url("./../../images/main-image.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; */
+}
