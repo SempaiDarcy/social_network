@@ -4,10 +4,11 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Profile } from "./components/Profile/Profile";
 import { Dialogs } from "./components/Dialogs/Dialogs";
 import { Route, Switch } from "react-router-dom";
-import { StateType } from "./state";
+import { StateType } from "./redux/state";
 
 type AppPropsType = {
   state: StateType;
+  addPost: (message: string) => void;
 };
 
 const App = (props: AppPropsType) => {
@@ -24,7 +25,12 @@ const App = (props: AppPropsType) => {
           />
           <Route
             path={"/profile"}
-            render={() => <Profile posts={props.state.profilePage.posts} />}
+            render={() => (
+              <Profile
+                posts={props.state.profilePage.posts}
+                addPost={props.addPost}
+              />
+            )}
           />
         </Switch>
       </div>

@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
 import { Post } from "../Post/Post";
 import s from "./Profile.module.css";
-import { PostType } from "../../state";
+import { PostType } from "../../redux/state";
 
 type ProfilePeropsType = {
   posts: PostType[];
+  addPost: (message: string) => void;
 };
 export const Profile = (props: ProfilePeropsType) => {
   const postsElements = props.posts.map((el) => {
@@ -13,8 +14,9 @@ export const Profile = (props: ProfilePeropsType) => {
 
   const newPostElement = useRef<HTMLTextAreaElement>(null);
   const addPost = () => {
+    debugger;
     let text = newPostElement.current?.value;
-    alert(text);
+    if (text !== undefined) props.addPost(text);
   };
   return (
     <div className={s.content}>

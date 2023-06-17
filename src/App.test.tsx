@@ -14,6 +14,9 @@ it("renders without crashing", () => {
         },
         sidebar: {},
       }}
+      addPost={function (): void {
+        throw new Error("Function not implemented.");
+      }}
     />,
     div
   );

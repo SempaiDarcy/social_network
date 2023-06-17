@@ -1,6 +1,6 @@
 import s from "./Dialogs.module.css";
 import { Dialog } from "./Dialog/Dialog";
-import { DialogType } from "../../state";
+import { DialogType } from "../../redux/state";
 
 type DialogsPropsType = {
   dialogs: DialogType[];

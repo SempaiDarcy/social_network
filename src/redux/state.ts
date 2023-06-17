@@ -1,11 +1,10 @@
+import {rerenderEntireTree} from "./render";
+
 export const state = {
   profilePage: {
     posts: [
       { id: 1, message: "Hi, how are you?", likes: 12 },
       { id: 2, message: "Hi, how are you?", likes: 11 },
-      { id: 3, message: "Hi, how are you?", likes: 11 },
-      { id: 4, message: "Hi, how are you?", likes: 11 },
-      { id: 5, message: "Hi, how are you?", likes: 11 },
     ],
   },
   dialogsPage: {
@@ -17,6 +16,17 @@ export const state = {
     ],
   },
   sidebar: {},
+};
+
+export const addPost = (postMessage: string) => {
+  debugger;
+  let newPost = {
+    id: 6,
+    message: postMessage,
+    likes: 33,
+  };
+  state.profilePage.posts.push(newPost);
+  rerenderEntireTree()
 };
 export type PostType = {
   id: number;
