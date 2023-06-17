@@ -4,19 +4,10 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Profile } from "./components/Profile/Profile";
 import { Dialogs } from "./components/Dialogs/Dialogs";
 import { Route, Switch } from "react-router-dom";
+import { StateType } from "./state";
 
 type AppPropsType = {
-  posts: PostType[];
-  dialogs: DialogsType[];
-};
-export type PostType = {
-  id: number;
-  message: string;
-  likes: number;
-};
-export type DialogsType = {
-  id: number;
-  name: string;
+  state: StateType;
 };
 
 const App = (props: AppPropsType) => {
@@ -29,11 +20,11 @@ const App = (props: AppPropsType) => {
         <Switch>
           <Route
             path={"/dialogs"}
-            render={() => <Dialogs dialogs={props.dialogs} />}
+            render={() => <Dialogs dialogs={props.state.dialogsPage.dialogs} />}
           />
           <Route
             path={"/profile"}
-            render={() => <Profile posts={props.posts} />}
+            render={() => <Profile posts={props.state.profilePage.posts} />}
           />
         </Switch>
       </div>

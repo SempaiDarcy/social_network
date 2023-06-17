@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import { PostType } from "../../App";
 import { Post } from "../Post/Post";
 import s from "./Profile.module.css";
+import { PostType } from "../../state";
 
 type ProfilePeropsType = {
   posts: PostType[];

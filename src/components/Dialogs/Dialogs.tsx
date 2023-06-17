@@ -1,8 +1,9 @@
 import s from "./Dialogs.module.css";
 import { Dialog } from "./Dialog/Dialog";
-import { DialogsType } from "../../App";
+import { DialogType } from "../../state";
+
 type DialogsPropsType = {
-  dialogs: DialogsType[];
+  dialogs: DialogType[];
 };
 export const Dialogs = (props: DialogsPropsType) => {
   return (
