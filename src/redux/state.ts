@@ -26,7 +26,7 @@ export const addPost = (postMessage: string) => {
     likes: 33,
   };
   state.profilePage.posts.push(newPost);
-  rerenderEntireTree()
+  rerenderEntireTree({state})
 };
 export type PostType = {
   id: number;
