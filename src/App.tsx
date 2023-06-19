@@ -4,10 +4,10 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Profile } from "./components/Profile/Profile";
 import { Dialogs } from "./components/Dialogs/Dialogs";
 import { Route, Switch } from "react-router-dom";
-import { StateType } from "./redux/state";
+import { RootStateType } from "./redux/state";
 
 type AppPropsType = {
-  state: StateType;
+  state: RootStateType;
   addPost: (message: string) => void;
 };
 

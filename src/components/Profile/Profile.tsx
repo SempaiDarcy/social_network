@@ -14,7 +14,6 @@ export const Profile = (props: ProfilePeropsType) => {
 
   const newPostElement = useRef<HTMLTextAreaElement>(null);
   const addPost = () => {
-    debugger;
     let text = newPostElement.current?.value;
     if (text !== undefined) props.addPost(text);
   };

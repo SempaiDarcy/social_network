@@ -1,6 +1,8 @@
-import {rerenderEntireTree} from "./render";
+let rerenderEntireTree = (state:RootStateType) => {
+  console.log("state changed")
+}
 
-export const state = {
+export const state:RootStateType = {
   profilePage: {
     posts: [
       { id: 1, message: "Hi, how are you?", likes: 12 },
@@ -19,15 +21,17 @@ export const state = {
 };
 
 export const addPost = (postMessage: string) => {
-  debugger;
   let newPost = {
     id: 6,
     message: postMessage,
     likes: 33,
   };
   state.profilePage.posts.push(newPost);
-  rerenderEntireTree({state})
+  rerenderEntireTree(state)
 };
+export const subscribe = (callback:(state:RootStateType)=>void) => {
+  rerenderEntireTree = callback
+}
 export type PostType = {
   id: number;
   message: string;
@@ -49,8 +53,10 @@ export type DialogsPageType = {
 
 export type SidebarType = {};
 
-export type StateType = {
+export type RootStateType = {
   profilePage: ProfilePageType;
   dialogsPage: DialogsPageType;
   sidebar: SidebarType;
 };
+// @ts-ignore
+window.state = state
