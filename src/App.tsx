@@ -4,11 +4,11 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Profile } from "./components/Profile/Profile";
 import { Dialogs } from "./components/Dialogs/Dialogs";
 import { Route, Switch } from "react-router-dom";
-import { RootStateType } from "./redux/state";
+import {AddPostAT, ChangeTextAT, RootStateType, store} from "./redux/state";
 
 type AppPropsType = {
   state: RootStateType;
-  addPost: (message: string) => void;
+  dispatch:(action:AddPostAT|ChangeTextAT)=>void
 };
 
 const App = (props: AppPropsType) => {
@@ -28,7 +28,7 @@ const App = (props: AppPropsType) => {
             render={() => (
               <Profile
                 posts={props.state.profilePage.posts}
-                addPost={props.addPost}
+                addPost={props.dispatch}
               />
             )}
           />

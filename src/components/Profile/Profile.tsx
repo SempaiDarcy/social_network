@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 import { Post } from "../Post/Post";
 import s from "./Profile.module.css";
-import { PostType } from "../../redux/state";
+import {AddPostAT, ChangeTextAT, PostType} from "../../redux/state";
 
 type ProfilePeropsType = {
   posts: PostType[];
-  addPost: (message: string) => void;
+  addPost: (action:AddPostAT|ChangeTextAT) => void;
 };
 export const Profile = (props: ProfilePeropsType) => {
   const postsElements = props.posts.map((el) => {
@@ -15,7 +15,8 @@ export const Profile = (props: ProfilePeropsType) => {
   const newPostElement = useRef<HTMLTextAreaElement>(null);
   const addPost = () => {
     let text = newPostElement.current?.value;
-    if (text !== undefined) props.addPost(text);
+    console.log(text)
+    if (text !== undefined) props.addPost({type:"ADD-POST",postText:text});
   };
   return (
     <div className={s.content}>

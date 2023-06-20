@@ -6,7 +6,10 @@ import {RootStateType, store} from "./redux/state";
 const rerenderEntireTree = (state:RootStateType) => {
     ReactDOM.render(
         <BrowserRouter>
-            <div style={{display:"flex",justifyContent:"center"}}><App state={state} addPost={store.addPost.bind(store)}/></div>
+            <div style={{display:"flex",justifyContent:"center"}}>
+                <App
+                    state={state}
+                    dispatch={store.dispatch.bind(store)}/></div>
         </BrowserRouter>,
         document.getElementById("root")
     );
