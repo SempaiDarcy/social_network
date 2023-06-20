@@ -1,18 +1,17 @@
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import {addPost, RootStateType, state, subscribe} from "./redux/state";
 import App from "./App";
-
+import {RootStateType, store} from "./redux/state";
 // addPost("SamuraiJS.COM");
 const rerenderEntireTree = (state:RootStateType) => {
     ReactDOM.render(
         <BrowserRouter>
-            <div style={{display:"flex",justifyContent:"center"}}><App state={state} addPost={addPost}/></div>
+            <div style={{display:"flex",justifyContent:"center"}}><App state={state} addPost={store.addPost.bind(store)}/></div>
         </BrowserRouter>,
         document.getElementById("root")
     );
 };
 
-rerenderEntireTree(state);
+rerenderEntireTree(store.getState());
 
-subscribe(rerenderEntireTree)
+store.subscribe(rerenderEntireTree)
