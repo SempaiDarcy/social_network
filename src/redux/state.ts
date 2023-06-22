@@ -51,7 +51,6 @@ export let store:StoreType = {
     return this._state
   },
   dispatch(action) {
-    debugger
     if(action.type==="ADD-POST") {
       const newPost: PostType = {
         id: new Date().getTime(),
