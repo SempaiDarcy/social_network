@@ -1,11 +1,11 @@
-import React, {useRef, useState} from "react";
+import React, {ChangeEvent, useRef, useState} from "react";
 import { Post } from "../Post/Post";
 import s from "./Profile.module.css";
-import {AddPostAT, ChangeTextAT, PostType} from "../../redux/state";
+import {AddPostAT, ChangeTextAT, PostType} from "../../redux/store";
 
 type ProfilePropsType = {
   posts: PostType[];
-  addPost: (action:AddPostAT|ChangeTextAT) => void;
+  dispatch: (action:AddPostAT|ChangeTextAT) => void;
 };
 export const Profile = (props: ProfilePropsType) => {
   const [postText,setPostText] = useState("")
@@ -17,17 +17,21 @@ export const Profile = (props: ProfilePropsType) => {
     let text = newPostElement.current?.value;
     console.log(text)
     if (text !== undefined) {
-      props.addPost({type: "ADD-POST", postText: text})
+      props.dispatch({type: "ADD-POST", postText: text})
       setPostText("")
     }
-  };
+  }
+  const onPostChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
+    setPostText(e.target.value)
+  }
+
   return (
     <div className={s.content}>
       <div>
         My posts
         <div>
           <div>
-            <textarea ref={newPostElement} value={postText} onChange={(e)=>{setPostText(e.target.value)}}></textarea>
+            <textarea ref={newPostElement} value={postText} onChange={onPostChange}></textarea>
           </div>
           <div>
             <button onClick={addPost}>Add Post</button>
