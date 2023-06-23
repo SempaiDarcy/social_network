@@ -1,4 +1,7 @@
+import {v1} from "uuid";
+
 export type AddPostAT = ReturnType<typeof addPostAC>
+export type AddMessageAT = ReturnType<typeof addMessageAC>
 export type ChangeTextAT = {
     type: 'CHANGE-NEW-TEXT',
     newText: string
@@ -20,7 +23,9 @@ export let store: StoreType = {
                 {id: 4, name: "Valera"},
             ],
             messages: [
-                {id: 1, message: "Hi"}
+                {id: v1(), message: "Hi"},
+                {id: v1(), message: "Hello"},
+                {id: v1(), message: "How a u"}
             ]
         },
         sidebar: {},
@@ -48,19 +53,42 @@ export let store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            const newPost: PostType = {
-                id: new Date().getTime(),
-                message: action.postText,
-                likes: 0
+        switch (action.type) {
+            case 'ADD-POST': {
+                const newPost: PostType = {
+                    id: new Date().getTime(),
+                    message: action.postText,
+                    likes: 0
+                }
+                console.log(action.postText)
+                this._state.profilePage.posts.push(newPost)
+                this._onChange(this._state)
             }
-            console.log(action.postText)
-            this._state.profilePage.posts.push(newPost)
-            this._onChange(this._state)
-        } else if (action.type === 'CHANGE-NEW-TEXT') {
-            this._state.messageForNewPost = action.newText
-            this._onChange(this._state)
+                break;
+            case 'ADD-MESSAGE':
+                const newMessage: MessageType = {
+                    id:v1(),
+                    message:action.newMessage
+                }
+                console.log(action.newMessage)
+                this._state.dialogsPage.messages.push(newMessage)
+                this._onChange(this._state)
         }
+        // if (action.type === "ADD-POST") {
+        //     const newPost: PostType = {
+        //         id: new Date().getTime(),
+        //         message: action.postText,
+        //         likes: 0
+        //     }
+        //     console.log(action.postText)
+        //     this._state.profilePage.posts.push(newPost)
+        //     this._onChange(this._state)
+        // } if (action.type === 'CHANGE-NEW-TEXT') {
+        //     this._state.messageForNewPost = action.newText
+        //     this._onChange(this._state)
+        // }
+        // else if (action.) {
+        //
     }
 }
 export type StoreType = {
@@ -72,13 +100,16 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionsType) => void
 }
-export const addPostAC = (postText:string) => {
-    return {type:"ADD-POST", postText} as const
+export const addPostAC = (postText: string) => {
+    return {type: "ADD-POST", postText} as const
 }
-export const changeNewTextAC = (newText:string):ChangeTextAT => {
-    return {type:"CHANGE-NEW-TEXT",newText} as const
+export const addMessageAC = (newMessage: string) => {
+    return {type: 'ADD-MESSAGE', newMessage} as const
 }
-export type ActionsType = AddPostAT | ChangeTextAT
+export const changeNewTextAC = (newText: string): ChangeTextAT => {
+    return {type: "CHANGE-NEW-TEXT", newText}
+}
+export type ActionsType = AddPostAT | ChangeTextAT | AddMessageAT
 export type RootStateType = {
     messageForNewPost: string
     profilePage: ProfilePageType;
@@ -94,8 +125,9 @@ export type DialogType = {
     id: number;
     name: string;
 };
+
 export type MessageType = {
-    id: number,
+    id: string,
     message: string
 }
 export type ProfilePageType = {

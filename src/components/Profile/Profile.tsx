@@ -38,10 +38,6 @@ export const Profile = (props: ProfilePropsType) => {
         </div>
         <div className={s.posts}>
           {postsElements}
-          {/* <Post message="Hi" likes="1" />
-          <Post message="How are u" likes="2" />
-          <Post message="I am fine" likes="3" />
-          <Post message="It is ok" likes="4" /> */}
         </div>
       </div>
     </div>
