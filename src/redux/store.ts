@@ -106,6 +106,13 @@ export const addPostAC = (postText: string) => {
 export const addMessageAC = (newMessage: string) => {
     return {type: 'ADD-MESSAGE', newMessage} as const
 }
+
+export const updatePostAC = () => {
+    return {type:'UPDATE-POST'}
+}
+export const updateMessageAC = () => {
+    return {type:'UPDATE-MESSAGE'}
+}
 export const changeNewTextAC = (newText: string): ChangeTextAT => {
     return {type: "CHANGE-NEW-TEXT", newText}
 }

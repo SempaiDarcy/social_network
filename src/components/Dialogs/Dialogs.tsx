@@ -18,7 +18,9 @@ export const Dialogs = (props: DialogsPropsType) => {
             setMessageText("")
         }
     }
-
+    const onMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setMessageText(e.target.value)
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs_items}>
@@ -32,7 +34,12 @@ export const Dialogs = (props: DialogsPropsType) => {
                 })}
             </div>
             <div>
-                <textarea value={messageText} ref={newMessageElement} onChange={(e)=>setMessageText(e.target.value)}></textarea>
+                <textarea
+                    value={messageText}
+                    ref={newMessageElement}
+                    onChange={onMessageChange}
+                    placeholder="Enter your message"
+                ></textarea>
                 <button onClick={addMessage}>Add Message</button>
             </div>
         </div>
