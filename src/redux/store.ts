@@ -1,3 +1,8 @@
+export type AddPostAT = ReturnType<typeof addPostAC>
+export type ChangeTextAT = {
+    type: 'CHANGE-NEW-TEXT',
+    newText: string
+}
 export let store: StoreType = {
     _state: {
         messageForNewPost: "sdasda",
@@ -65,8 +70,15 @@ export type StoreType = {
     _onChange: (state: RootStateType) => void
     subscribe: (callback: (state: RootStateType) => void) => void
     getState: () => RootStateType
-    dispatch: (action: AddPostAT | ChangeTextAT) => void
+    dispatch: (action: ActionsType) => void
 }
+export const addPostAC = (postText:string) => {
+    return {type:"ADD-POST", postText} as const
+}
+export const changeNewTextAC = (newText:string):ChangeTextAT => {
+    return {type:"CHANGE-NEW-TEXT",newText} as const
+}
+export type ActionsType = AddPostAT | ChangeTextAT
 export type RootStateType = {
     messageForNewPost: string
     profilePage: ProfilePageType;
@@ -93,14 +105,6 @@ export type DialogsPageType = {
     dialogs: DialogType[];
     messages: MessageType[]
 };
-export type AddPostAT = {
-    type: "ADD-POST",
-    postText: string
-}
-export type ChangeTextAT = {
-    type: 'CHANGE-NEW-TEXT',
-    newText: string
-}
 export type SidebarType = {};
 // @ts-ignore
 window.store = store
