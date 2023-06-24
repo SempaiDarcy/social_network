@@ -1,4 +1,6 @@
 import {v1} from "uuid";
+import {profileReducer} from "./profile-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
 
 export type AddPostAT = ReturnType<typeof addPostAC>
 export type AddMessageAT = ReturnType<typeof addMessageAC>
@@ -53,42 +55,8 @@ export let store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        switch (action.type) {
-            case 'ADD-POST': {
-                const newPost: PostType = {
-                    id: new Date().getTime(),
-                    message: action.postText,
-                    likes: 0
-                }
-                console.log(action.postText)
-                this._state.profilePage.posts.push(newPost)
-                this._onChange(this._state)
-            }
-                break;
-            case 'ADD-MESSAGE':
-                const newMessage: MessageType = {
-                    id:v1(),
-                    message:action.newMessage
-                }
-                console.log(action.newMessage)
-                this._state.dialogsPage.messages.push(newMessage)
-                this._onChange(this._state)
-        }
-        // if (action.type === "ADD-POST") {
-        //     const newPost: PostType = {
-        //         id: new Date().getTime(),
-        //         message: action.postText,
-        //         likes: 0
-        //     }
-        //     console.log(action.postText)
-        //     this._state.profilePage.posts.push(newPost)
-        //     this._onChange(this._state)
-        // } if (action.type === 'CHANGE-NEW-TEXT') {
-        //     this._state.messageForNewPost = action.newText
-        //     this._onChange(this._state)
-        // }
-        // else if (action.) {
-        //
+        this._state.profilePage.posts = profileReducer(store._state.profilePage.posts,action)
+        this._state.dialogsPage.messages = dialogsReducer(store._state.dialogsPage.messages,action)
     }
 }
 export type StoreType = {
@@ -107,12 +75,7 @@ export const addMessageAC = (newMessage: string) => {
     return {type: 'ADD-MESSAGE', newMessage} as const
 }
 
-export const updatePostAC = () => {
-    return {type:'UPDATE-POST'}
-}
-export const updateMessageAC = () => {
-    return {type:'UPDATE-MESSAGE'}
-}
+
 export const changeNewTextAC = (newText: string): ChangeTextAT => {
     return {type: "CHANGE-NEW-TEXT", newText}
 }

@@ -30,7 +30,11 @@ export const Profile = (props: ProfilePropsType) => {
         My posts
         <div>
           <div>
-            <textarea ref={newPostElement} value={postText} onChange={onPostChange}></textarea>
+            <textarea
+                ref={newPostElement}
+                value={postText}
+                onChange={onPostChange}
+                placeholder="Enter your post"></textarea>
           </div>
           <div>
             <button onClick={addPost}>Add Post</button>
