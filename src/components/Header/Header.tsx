@@ -1,5 +1,5 @@
 import s from "./Header.module.css";
-import app_icon from "../Navigation/icons/symbol.png"
+import app_icon from "../../images/symbol.png"
 export const Header = () => {
   return (
     <header className={`${s.header} ${s.rainHeader}`}>

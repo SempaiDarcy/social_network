@@ -10,7 +10,13 @@ export type ChangePostTextAT = {
 }
 export let store: StoreType = {
     _state: {
-        messageForNewPost: "sdasda",
+        user: {
+            id: v1(),
+            name: 'Akbar Gabdualiev',
+            city: 'Uralsk',
+            site: '-',
+            avatar: "https://avatars.mds.yandex.net/i?id=0bbeac957963e13882ae83d5c690a08e603d7664-7803878-images-thumbs&n=13"
+        },
         profilePage: {
             posts: [
                 {id: 1, message: "Hi, how are you?", likes: 12},
@@ -35,10 +41,10 @@ export let store: StoreType = {
     _onChange() {
         console.log("state changed")
     },
-    changeNewText(newText: string) {
-        this._state.messageForNewPost = newText
-        this._onChange(this._state)
-    },
+    // changeNewText(newText: string) {
+    //     this._state.messageForNewPost = newText
+    //     this._onChange(this._state)
+    // },
     addPost(postText: string) {
         const newPost: PostType = {
             id: new Date().getTime(),
@@ -55,13 +61,13 @@ export let store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        this._state.profilePage.posts = profileReducer(store._state.profilePage.posts,action)
-        this._state.dialogsPage.messages = dialogsReducer(store._state.dialogsPage.messages,action)
+        this._state.profilePage.posts = profileReducer(store._state.profilePage.posts, action)
+        this._state.dialogsPage.messages = dialogsReducer(store._state.dialogsPage.messages, action)
     }
 }
 export type StoreType = {
     _state: RootStateType,
-    changeNewText: (newText: string) => void
+    // changeNewText: (newText: string) => void
     addPost: (postText: string) => void
     _onChange: (state: RootStateType) => void
     subscribe: (callback: (state: RootStateType) => void) => void
@@ -81,11 +87,18 @@ export const changeNewTextAC = (newText: string): ChangePostTextAT => {
 }
 export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT
 export type RootStateType = {
-    messageForNewPost: string
+    user: UserType;
     profilePage: ProfilePageType;
     dialogsPage: DialogsPageType;
     sidebar: SidebarType;
 };
+export type UserType = {
+    id: string,
+    name: string,
+    city: string,
+    site: '-',
+    avatar: string
+}
 export type PostType = {
     id: number;
     message: string;
@@ -102,6 +115,7 @@ export type MessageType = {
 }
 export type ProfilePageType = {
     posts: PostType[];
+
 };
 export type DialogsPageType = {
     dialogs: DialogType[];

@@ -1,10 +1,11 @@
 import s from "./Dialogs.module.css";
 import {Dialog} from "./Dialog/Dialog";
-import {ActionDispatchType, addMessageAC, DialogsPageType} from "../../redux/store";
+import {ActionDispatchType, addMessageAC, DialogType, MessageType} from "../../redux/store";
 import {useRef, useState} from "react";
 
 type DialogsPropsType = {
-    dialogsPage: DialogsPageType;
+    dialogsData: DialogType[];
+    messagesData: MessageType[]
     dispatch:(actions:ActionDispatchType)=>void
 };
 export const Dialogs = (props: DialogsPropsType) => {
@@ -24,12 +25,12 @@ export const Dialogs = (props: DialogsPropsType) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs_items}>
-                {props.dialogsPage.dialogs.map((el) => {
+                {props.dialogsData.map((el) => {
                     return <Dialog id={el.id} name={el.name}/>;
                 })}
             </div>
             <div className={s.messages}>
-                {props.dialogsPage.messages.map((el)=>{
+                {props.messagesData.map((el)=>{
                     return <span id={el.id}><div>{el.message}</div></span>
                 })}
             </div>

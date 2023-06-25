@@ -23,7 +23,8 @@ const App = (props: AppPropsType) => {
                         path={"/profile"}
                         render={() => (
                             <Profile
-                                posts={props.state.profilePage.posts}
+                                postData = {props.state.profilePage.posts}
+                                user = {props.state.user}
                                 dispatch={props.dispatch}
                             />
                         )}
@@ -32,7 +33,8 @@ const App = (props: AppPropsType) => {
                         path={"/dialogs"}
                         render={() =>
                             <Dialogs
-                                dialogsPage={props.state.dialogsPage}
+                                dialogsData={props.state.dialogsPage.dialogs}
+                                messagesData={props.state.dialogsPage.messages}
                                 dispatch={props.dispatch}/>}
                     />
                     <Route path={'/news'} render={()=><div>news</div>}/>
