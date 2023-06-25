@@ -1,6 +1,11 @@
-import {ActionDispatchType, PostType} from "./store";
-
-export const profileReducer = (state:PostType[],action:ActionDispatchType) => {
+import {ActionDispatchType, PostType, ProfilePageType} from "./store";
+let initialState ={
+    posts:[
+        {id: 1, message: "Hi, how are you?", likes: 12},
+        {id: 2, message: "Hi, how are you?", likes: 11},
+    ]
+}
+export const profileReducer = (state:ProfilePageType = initialState,action:ActionDispatchType) => {
     switch (action.type) {
         case "ADD-POST":
             const newPost: PostType = {
@@ -9,7 +14,7 @@ export const profileReducer = (state:PostType[],action:ActionDispatchType) => {
                 likes: 0
             }
             console.log(action.postText)
-            state.push(newPost)
+            state.posts.push(newPost)
     }
     return state
 }
