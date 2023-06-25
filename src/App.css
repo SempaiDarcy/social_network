@@ -8,8 +8,9 @@
     " f f ";
   grid-template-rows: 100px 1fr;
   grid-template-columns: 2fr 10fr;
+  grid-gap: 0.5rem;
 }
 .app-wrapper-content {
   grid-area: "c";
-  background-color: rgb(220, 220, 226);
+  background-color: rgb(233, 221, 148);
 }

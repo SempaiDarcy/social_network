@@ -2,6 +2,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import {store} from "./redux/store";
+import "./index.css"
 // addPost("SamuraiJS.COM");
 const rerenderEntireTree = () => {
     ReactDOM.render(

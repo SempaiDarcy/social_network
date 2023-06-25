@@ -1,13 +1,28 @@
-.nav {
+.nav{
   grid-area: n;
-  background-color: rgb(9, 127, 140);
-  font-size: 20px;
+  background-color: #f9c253;
+  min-width: 150px;
 }
-.item a {
-  color: white;
-  cursor: pointer;
+.item{
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  background-color: transparent;
+  font-size: 20px;
+
+}
+.item:hover{
+  background-color: #d1f5fd;
+  border: 1px solid #3d0a14;
+  color: #291f63;
+}
+
+.link{
   text-decoration: none;
 }
-.item a.active {
-  color: gold;
+.link:visited{
+  color: #3d0a14;
+}
+.icons {
+  width: 15px;
 }
