@@ -1,11 +1,12 @@
 import React, {ChangeEvent, useRef, useState} from "react";
 import { Post } from "../Post/Post";
 import s from "./Profile.module.css";
-import {ActionsType, addPostAC, PostType} from "../../redux/store";
+import {ActionDispatchType, addPostAC, PostType} from "../../redux/store";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 type ProfilePropsType = {
   posts: PostType[];
-  dispatch: (action:ActionsType) => void;
+  dispatch: (action:ActionDispatchType) => void;
 };
 export const Profile = (props: ProfilePropsType) => {
   const [postText,setPostText] = useState("")
@@ -25,23 +26,21 @@ export const Profile = (props: ProfilePropsType) => {
     setPostText(e.target.value)
   }
   return (
-    <div className={s.content}>
-      <div>
-        My posts
+    <div>
+      <ProfileInfo/>
+      <div className={s.content}>
+        <div className={s.posts}>
+          {postsElements}
+        </div>
         <div>
-          <div>
             <textarea
                 ref={newPostElement}
                 value={postText}
                 onChange={onPostChange}
-                placeholder="Enter your post"></textarea>
-          </div>
-          <div>
+                placeholder="Enter your post">
+            </textarea>
+          <br/>
             <button onClick={addPost}>Add Post</button>
-          </div>
-        </div>
-        <div className={s.posts}>
-          {postsElements}
         </div>
       </div>
     </div>

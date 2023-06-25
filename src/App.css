@@ -3,12 +3,11 @@
   width: 1500px;
   height: 800px;
   grid-template-areas:
-    "h h "
-    "n c";
-  grid-template-rows: 200px 1fr;
+    " h h "
+    " n c "
+    " f f ";
+  grid-template-rows: 100px 1fr;
   grid-template-columns: 2fr 10fr;
-  padding: 0 20px 0 20px;
-  grid-gap: 0;
 }
 .app-wrapper-content {
   grid-area: "c";

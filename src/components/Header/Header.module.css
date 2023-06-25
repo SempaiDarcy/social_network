@@ -1,7 +1,12 @@
 .header {
   grid-area: h;
+  display: flex;
   background-color: rgb(10, 67, 113);
+  align-items: center;
+  gap: 1rem;
+  padding: 10px;
 }
-img {
-  width: 15%;
+.header_logo {
+  width: 5rem;
 }
+

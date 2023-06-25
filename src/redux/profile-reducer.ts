@@ -1,6 +1,6 @@
-import {ActionsType, PostType} from "./store";
+import {ActionDispatchType, PostType} from "./store";
 
-export const profileReducer = (state:PostType[],action:ActionsType) => {
+export const profileReducer = (state:PostType[],action:ActionDispatchType) => {
     switch (action.type) {
         case "ADD-POST":
             const newPost: PostType = {

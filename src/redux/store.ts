@@ -4,7 +4,7 @@ import {dialogsReducer} from "./dialogs-reducer";
 
 export type AddPostAT = ReturnType<typeof addPostAC>
 export type AddMessageAT = ReturnType<typeof addMessageAC>
-export type ChangeTextAT = {
+export type ChangePostTextAT = {
     type: 'CHANGE-NEW-TEXT',
     newText: string
 }
@@ -66,7 +66,7 @@ export type StoreType = {
     _onChange: (state: RootStateType) => void
     subscribe: (callback: (state: RootStateType) => void) => void
     getState: () => RootStateType
-    dispatch: (action: ActionsType) => void
+    dispatch: (action: ActionDispatchType) => void
 }
 export const addPostAC = (postText: string) => {
     return {type: "ADD-POST", postText} as const
@@ -76,10 +76,10 @@ export const addMessageAC = (newMessage: string) => {
 }
 
 
-export const changeNewTextAC = (newText: string): ChangeTextAT => {
+export const changeNewTextAC = (newText: string): ChangePostTextAT => {
     return {type: "CHANGE-NEW-TEXT", newText}
 }
-export type ActionsType = AddPostAT | ChangeTextAT | AddMessageAT
+export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT
 export type RootStateType = {
     messageForNewPost: string
     profilePage: ProfilePageType;

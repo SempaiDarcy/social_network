@@ -1,22 +1,22 @@
 import {Header} from "./components/Header/Header";
 import "./App.css";
-import {Navbar} from "./components/Navbar/Navbar";
+import {Navigation} from "./components/Navigation/Navigation";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Route, Switch} from "react-router-dom";
-import {ActionsType,RootStateType} from "./redux/store";
+import {ActionDispatchType, RootStateType} from "./redux/store";
 
 type AppPropsType = {
     state: RootStateType;
-    dispatch: (action:ActionsType) => void
+    dispatch: (action: ActionDispatchType) => void
 };
 
 const App = (props: AppPropsType) => {
     return (
         <div className="app-wrapper">
             <Header/>
-            <Navbar/>
-            {/* <MyPosts /> */}
+            <Navigation/>
+             {/*<MyPosts />*/}
             <div className="app-wrapper-content">
                 <Switch>
                     <Route
@@ -30,8 +30,14 @@ const App = (props: AppPropsType) => {
                     />
                     <Route
                         path={"/dialogs"}
-                        render={() => <Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch}/>}
+                        render={() =>
+                            <Dialogs
+                                dialogsPage={props.state.dialogsPage}
+                                dispatch={props.dispatch}/>}
                     />
+                    <Route path={'/news'} render={()=><div>news</div>}/>
+                    <Route path={'/music'} render={()=><div>music</div>}/>
+                    <Route path={'/settings'} render={()=><div>settings</div>}/>
                 </Switch>
             </div>
         </div>

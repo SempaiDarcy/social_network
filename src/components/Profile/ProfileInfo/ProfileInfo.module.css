@@ -1,0 +1,16 @@
+.img img{
+    width: 100%;
+    height: 500px;
+}
+.hidden  img{
+    width: 0;
+    height: 0;
+}
+.wallButton {
+    display: flex;
+    justify-content: center;
+}
+.wallButton img {
+    width: 5rem;
+    cursor: pointer;
+}

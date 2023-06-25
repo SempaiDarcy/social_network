@@ -1,8 +1,7 @@
 .content {
   height: 600px;
   grid-area: c;
-  background-color: rgb(242, 242, 242);
-  background-image: url("./../../images/profile-wall.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  padding: 20px;
 }

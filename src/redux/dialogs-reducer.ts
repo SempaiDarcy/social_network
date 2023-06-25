@@ -1,7 +1,7 @@
-import {ActionsType, MessageType} from "./store";
+import {ActionDispatchType, MessageType} from "./store";
 import {v1} from "uuid";
 
-export const dialogsReducer = (state:MessageType[],action:ActionsType) => {
+export const dialogsReducer = (state:MessageType[],action:ActionDispatchType) => {
     switch (action.type) {
         case "ADD-MESSAGE":
             const newMessage: MessageType = {

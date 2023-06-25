@@ -1,11 +1,11 @@
 import s from "./Dialogs.module.css";
 import {Dialog} from "./Dialog/Dialog";
-import {ActionsType, addMessageAC, DialogsPageType} from "../../redux/store";
+import {ActionDispatchType, addMessageAC, DialogsPageType} from "../../redux/store";
 import {useRef, useState} from "react";
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType;
-    dispatch:(actions:ActionsType)=>void
+    dispatch:(actions:ActionDispatchType)=>void
 };
 export const Dialogs = (props: DialogsPropsType) => {
     const [messageText, setMessageText] = useState("")

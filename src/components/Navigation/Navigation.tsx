@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import s from "./Navbar.module.css";
+import s from "./Navigation.module.css";
 
-export const Navbar = () => {
+export const Navigation = () => {
   return (
     <div className={s.nav}>
       <div className={s.item}>
@@ -15,13 +15,13 @@ export const Navbar = () => {
         </NavLink>
       </div>
       <div className={s.item}>
-        <a>News</a>
+        <NavLink to={"/news"}>News</NavLink>
       </div>
       <div className={s.item}>
-        <a>Music</a>
+        <NavLink to={"/music"}>Music</NavLink>
       </div>
       <div className={s.item}>
-        <a>Settings</a>
+        <NavLink to={"/settings"}>Settings</NavLink>
       </div>
     </div>
   );
