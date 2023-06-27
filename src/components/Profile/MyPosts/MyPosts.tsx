@@ -26,7 +26,6 @@ export const MyPosts = (props: MyPostsProps) => {
                 return (
                     <PostComponentContainer postData={elem}
                                             dispatch={props.dispatch}/>
-
                 )
             })}
 

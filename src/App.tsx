@@ -2,9 +2,9 @@ import {Header} from "./components/Header/Header";
 import "./App.css";
 import {Navigation} from "./components/Navigation/Navigation";
 import {Profile} from "./components/Profile/Profile";
-import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Route, Switch} from "react-router-dom";
 import {ActionDispatchType, RootStateType} from "./redux/store";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 type AppPropsType = {
     state: RootStateType;
@@ -16,7 +16,6 @@ const App = (props: AppPropsType) => {
         <div className="app-wrapper">
             <Header/>
             <Navigation/>
-             {/*<MyPosts />*/}
             <div className="app-wrapper-content">
                 <Switch>
                     <Route
@@ -33,11 +32,7 @@ const App = (props: AppPropsType) => {
                     <Route
                         path={"/dialogs"}
                         render={() =>
-                            <Dialogs
-                                dialogsData={props.state.dialogsPage.dialogs}
-                                messagesData={props.state.dialogsPage.messages}
-                                dispatch={props.dispatch}/>}
-                    />
+                            <DialogsContainer dialogs={props.state.dialogsPage} dispatch={props.dispatch}/>}/>
                     <Route path={'/news'} render={()=><div>news</div>}/>
                     <Route path={'/music'} render={()=><div>music</div>}/>
                     <Route path={'/settings'} render={()=><div>settings</div>}/>
