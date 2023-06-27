@@ -1,0 +1,80 @@
+.postContainer {
+    display: grid;
+    grid-template-rows: 25px 25px auto 1fr;
+    grid-template-columns: 100%;
+    grid-template-areas:
+  'myPosts'
+  'newPost'
+  'addText'
+  'button';
+    grid-gap: 10px;
+
+    /*padding-top: 5px;
+    padding-left: 10px;*/
+    margin: 15px;
+    padding-left: 10px;
+    padding-top: 10px;
+    border: 1px solid #0d0822;
+    border-radius: 5px;
+    width: auto;
+    background-image: url('../Posts/img/main-image.jpg');
+}
+.postContainer textarea {
+    background-color: #ffffff;
+}
+
+.myPosts {
+    grid-area: myPosts;
+    color: #0d0822;
+    margin-top: 1px;
+}
+
+.newPost {
+    grid-area: newPost;
+    margin-top: 1px;
+}
+
+.inputTextArea {
+    grid-area: addText;
+    background-color: transparent;
+    width: 98%;
+    height: 80px;
+    border: 2px solid #4f2a65;
+    border-radius: 5px;
+
+    column-count: auto;
+    resize: none;
+    outline: none;
+
+}
+
+
+.button {
+    grid-area: button;
+
+    width: 150px;
+    height: 40px;
+    margin: 0 10px 10px auto;
+
+    line-height: 40px;
+    background-color: #0d0822;
+    border: 1px solid #0d4c3c;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fdf7aa;
+    display: block;
+    font-size: 16px;
+}
+
+.button:hover {
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #f9c253;
+    border: 1px solid #0d0822;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #0d0822;
+    display: block;
+    font-size: 16px;
+}

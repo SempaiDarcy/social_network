@@ -26,6 +26,7 @@ const App = (props: AppPropsType) => {
                                 postData = {props.state.profilePage.posts}
                                 user = {props.state.user}
                                 dispatch={props.dispatch}
+                                newPostText={props.state.profilePage.newPostText}
                             />
                         )}
                     />
