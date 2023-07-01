@@ -1,13 +1,11 @@
 import React from "react";
-import {ActionDispatchType, PostType, UserType} from "../../redux/store";
+import {PostType, UserType} from "../../redux/store";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPosts} from "./MyPosts/MyPosts";
 
 type ProfilePropsType = {
-    postData: PostType[];
     user: UserType
-    dispatch: (action: ActionDispatchType) => void;
-    newPostText: string
+    postData:PostType[]
 };
 export const Profile = (props: ProfilePropsType) => {
     return (
@@ -19,7 +17,7 @@ export const Profile = (props: ProfilePropsType) => {
                 site={props.user.site}
                 avatar={props.user.avatar}
             />
-            <MyPosts postData={props.postData} dispatch={props.dispatch} newPostText={props.newPostText}/>
+            <MyPosts postData={props.postData}/>
         </div>
     );
 };

@@ -19,13 +19,12 @@ export const PostComponent = (props: PostComponentProps) => {
 
     return (
         <div className={post.post}>
-            <img className={post.avatar} src={avatar} alt={'avatar image'}/>
+            <img className={post.avatar} src={avatar} alt={'avatar'}/>
             <span className={post.message}> {props.message}</span>
             <div className={post.likes}>
-                <img className={post.likeimg} src={likefill} onClick={onClickLikeHandler} alt={'likes image'}/>
+                <img className={post.likeimg} src={likefill} onClick={onClickLikeHandler} alt={'likes'}/>
                 <span> {props.likes}</span>
             </div>
-
         </div>
         )
 

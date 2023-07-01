@@ -1,23 +1,15 @@
-import React from "react";
-import {ActionDispatchType, addPostAC, changeNewTextAC} from "../../../../redux/store";
+import {connect} from "react-redux";
 import {AddPost} from "./AddPost";
+import {DispatchType} from "../../../../redux/redux-store";
+import {addPostAC, changeNewTextAC, RootStateType} from "../../../../redux/store";
 
-type AddPostProps = {
-    dispatch: (action: ActionDispatchType) => void
-    newPostText: string
+const mapStateToProps = (state:RootStateType) => {
+    return {newPostText:state.profilePage.newPostText}
 }
-
-
-export const AddPostContainer = (props: AddPostProps) => {
-    const addPost = () => {
-        props.dispatch(addPostAC())
+const mapDispatchToProps = (dispatch:DispatchType) => {
+    return {
+        addPost:()=>dispatch(addPostAC()),
+        changePostText:(text:string)=>dispatch(changeNewTextAC(text))
     }
-    const changePostText = (text: string) => {
-        props.dispatch(changeNewTextAC(text))
-    }
-    return (
-        <AddPost addPost={ addPost }
-                 changePostText={ changePostText }
-                 newPostText={ props.newPostText }/>
-    )
 }
+export const AddPostContainer = connect(mapStateToProps,mapDispatchToProps)(AddPost)

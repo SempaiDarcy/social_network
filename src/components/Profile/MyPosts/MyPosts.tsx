@@ -1,34 +1,21 @@
 import React from "react";
-import {ActionDispatchType} from "../../../redux/store";
 import {AddPostContainer} from "./AddPost/AddPostContainer";
-import {PostComponentContainer} from "./Posts/PostComponentContainer";
+import {Post} from "./Posts/Post/Post";
+import {PostType} from "../../../redux/store";
 
-export type MyPostsProps = {
-    postData: Array<PostDataType>
-    dispatch: (action: ActionDispatchType) => void
-    newPostText: string
+type MyPostsPropsType = {
+    postData:PostType[]
 }
-
-export type PostDataType = {
-    id: string
-    message: string
-    likes: number
-}
-
-
-export const MyPosts = (props: MyPostsProps) => {
+export const MyPosts = (props:MyPostsPropsType) => {
 
     return (
         <>
-            <AddPostContainer dispatch={props.dispatch}
-                              newPostText={props.newPostText}/>
+            <AddPostContainer/>
             {props.postData.map(elem => {
                 return (
-                    <PostComponentContainer key={elem.id} postData={elem}
-                                            dispatch={props.dispatch}/>
+                    <Post key={elem.id} message={elem.message} likes={elem.likes}/>
                 )
             })}
-
         </>
     )
 }
