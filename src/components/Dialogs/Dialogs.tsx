@@ -26,12 +26,12 @@ export const Dialogs = (props: DialogsPropsType) => {
         <div className={s.dialogs}>
             <div className={s.dialogs_items}>
                 {props.dialogsData.map((el) => {
-                    return <Dialog id={el.id} name={el.name}/>;
+                    return <Dialog key={el.id} id={el.id} name={el.name}/>;
                 })}
             </div>
             <div className={s.messages}>
                 {props.messagesData.map((el)=>{
-                    return <span id={el.id}><div>{el.message}</div></span>
+                    return <span key={el.id} id={el.id}><div>{el.message}</div></span>
                 })}
             </div>
             <div>

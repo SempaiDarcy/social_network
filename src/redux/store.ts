@@ -49,9 +49,9 @@ export let store: StoreType = {
         this._state.profilePage.posts.push(newPost)
         this._onChange(this._state)
     },
-    // subscribe(callback: () => void) {
-    //     this._onChange = callback
-    // },
+    subscribe(callback: () => void) {
+        this._onChange = callback
+    },
     _rerenderAllTree() {
       this._rerenderAllTree()
     },
@@ -69,7 +69,7 @@ export type StoreType = {
     _state: RootStateType,
     addPost: (postText: string) => void
     _onChange: (state: RootStateType) => void
-    // subscribe: (callback: () => void) => void
+    subscribe: (callback: () => void) => void
     getState: () => RootStateType
     dispatch: (action: ActionDispatchType) => void
     _rerenderAllTree: () => void

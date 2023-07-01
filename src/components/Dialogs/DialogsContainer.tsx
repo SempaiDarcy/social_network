@@ -1,10 +1,15 @@
 import React from 'react';
 import {Dialogs} from "./Dialogs";
-import {ActionDispatchType, DialogsPageType} from "../../redux/store";
+import {StoreContext} from "../../StoreContext";
 
-type DialogsPropsType = {
-    dialogs:DialogsPageType;
-    dispatch:(actions:ActionDispatchType)=>void
+
+export const DialogsContainer = () => {
+    return (
+        <StoreContext.Consumer>
+            {(store) => {
+                return <Dialogs dialogsData={store.getState().dialogsPage.dialogs}
+                                messagesData={store.getState().dialogsPage.messages}
+                                dispatch={store.dispatch}/>
+            }}
+        </StoreContext.Consumer>)
 }
-export const DialogsContainer = (props:DialogsPropsType) => {
-    return <Dialogs dialogsData={props.dialogs.dialogs} messagesData={props.dialogs.messages} dispatch={props.dispatch}/>}

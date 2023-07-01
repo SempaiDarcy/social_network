@@ -3,14 +3,17 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import {store} from "./redux/redux-store";
 import './index.css'
-// addPost("SamuraiJS.COM");
+import React from "react";
+import {Provider} from "./StoreContext";
+
 const rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <div style={{display:"flex",justifyContent:"center"}}>
-                <App
-                    state={store.getState()}
-                    dispatch={store.dispatch.bind(store)}/></div>
+            <Provider store={store}>
+                <div style={{display: "flex", justifyContent: "center"}}>
+                    <App/>
+                </div>
+            </Provider>
         </BrowserRouter>,
         document.getElementById("root")
     );

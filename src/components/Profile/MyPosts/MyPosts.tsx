@@ -24,7 +24,7 @@ export const MyPosts = (props: MyPostsProps) => {
                               newPostText={props.newPostText}/>
             {props.postData.map(elem => {
                 return (
-                    <PostComponentContainer postData={elem}
+                    <PostComponentContainer key={elem.id} postData={elem}
                                             dispatch={props.dispatch}/>
                 )
             })}
