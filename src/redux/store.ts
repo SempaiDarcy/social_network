@@ -1,6 +1,6 @@
 import {v1} from "uuid";
-import {profileReducer} from "./profile-reducer";
-import {dialogsReducer} from "./dialogs-reducer";
+import {AddLikeAT, AddPostAT, ChangePostTextAT, profileReducer} from "./profile-reducer";
+import {AddMessageAT, dialogsReducer} from "./dialogs-reducer";
 
 
 export let store: StoreType = {
@@ -74,23 +74,9 @@ export type StoreType = {
     dispatch: (action: ActionDispatchType) => void
     _rerenderAllTree: () => void
 }
-export const addPostAC = () => {
-    return {type: "ADD-POST"} as const
-}
-export const addMessageAC = (newMessage: string) => {
-    return {type: 'ADD-MESSAGE', newMessage} as const
-}
-export const changeNewTextAC = (newText: string): ChangePostTextAT => {
-    return {type: "CHANGE-NEW-TEXT", newText}
-}
 
-export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT
-export type AddPostAT = ReturnType<typeof addPostAC>
-export type AddMessageAT = ReturnType<typeof addMessageAC>
-export type ChangePostTextAT = {
-    type: 'CHANGE-NEW-TEXT',
-    newText: string
-}
+export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT | AddLikeAT
+
 export type RootStateType = {
     user: UserType;
     profilePage: ProfilePageType;

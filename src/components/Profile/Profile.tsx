@@ -1,7 +1,7 @@
 import React from "react";
 import {PostType, UserType} from "../../redux/store";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {MyPosts} from "./MyPosts/MyPosts";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 type ProfilePropsType = {
     user: UserType
@@ -17,7 +17,7 @@ export const Profile = (props: ProfilePropsType) => {
                 site={props.user.site}
                 avatar={props.user.avatar}
             />
-            <MyPosts postData={props.postData}/>
+            <MyPostsContainer/>
         </div>
     );
 };

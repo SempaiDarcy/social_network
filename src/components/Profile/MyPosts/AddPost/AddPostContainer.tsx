@@ -1,7 +1,8 @@
 import {connect} from "react-redux";
 import {AddPost} from "./AddPost";
 import {DispatchType} from "../../../../redux/redux-store";
-import {addPostAC, changeNewTextAC, RootStateType} from "../../../../redux/store";
+import {RootStateType} from "../../../../redux/store";
+import {addPostAC, changeNewTextAC} from "../../../../redux/profile-reducer";
 
 const mapStateToProps = (state:RootStateType) => {
     return {newPostText:state.profilePage.newPostText}

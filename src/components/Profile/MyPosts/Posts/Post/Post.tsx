@@ -1,10 +1,16 @@
 import s from "./Post.module.css";
 
 export type PropsType = {
+    id:string
     message: string,
-    likes: number
+    likes: number,
+    addLike:(count:number,id:string)=>void
 };
 export const Post = (props: PropsType) => {
+    const addLike = () => {
+        let likes = props.likes+1
+        props.addLike(likes,props.id)
+    }
     return (
         <div className={s.post}>
             <img
@@ -13,7 +19,7 @@ export const Post = (props: PropsType) => {
             />
             post 1
             <div>
-                <span>{props.likes} Likes</span>
+                <span onClick={addLike}>{props.likes} Likes</span>
                 <div>{props.message}</div>
             </div>
         </div>

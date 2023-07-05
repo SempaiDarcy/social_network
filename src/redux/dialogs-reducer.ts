@@ -18,10 +18,16 @@ export const dialogsReducer = (state:DialogsPageType=initialState,action:ActionD
         case "ADD-MESSAGE":
             const newMessage: MessageType = {
                 id:v1(),
-                message:action.newMessage
+                message:action.message
             }
-            console.log(action.newMessage)
             state.messages.push(newMessage)
     }
     return state
+}
+export const addMessageAC = (message:string):AddMessageAT => {
+    return {type:"ADD-MESSAGE",message:message}
+}
+export type AddMessageAT = {
+    type:"ADD-MESSAGE"
+    message:string
 }
