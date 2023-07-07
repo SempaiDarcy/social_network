@@ -19,8 +19,9 @@ export const profileReducer = (state:ProfilePageType = initialState,action:Actio
             return newState
         }
         case "CHANGE-NEW-TEXT": {
-            state.newPostText = action.newText
-            return state
+            let newState = {...state}
+            newState.newPostText = action.newText
+            return newState
         }
         case "ADD-LIKE": {
             let newState = {...state,posts:state.posts.map((el)=>el.id===action.id?{...el,likes:action.count}:el)}

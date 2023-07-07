@@ -1,5 +1,5 @@
 import s from "./Post.module.css";
-
+import like from './../img/like.png'
 export type PropsType = {
     id:string
     message: string,
@@ -13,14 +13,16 @@ export const Post = (props: PropsType) => {
     }
     return (
         <div className={s.post}>
-            <img
-                src="https://avatars.mds.yandex.net/i?id=1b423d69437bfdaff08a53402617e97ed457c044-7763867-images-thumbs&n=13"
-                alt="avatar"
-            />
-            post 1
+            <div className={s.profile}>
+                <img className={s.avatar}
+                     src="https://avatars.mds.yandex.net/i?id=1b423d69437bfdaff08a53402617e97ed457c044-7763867-images-thumbs&n=13"
+                     alt="avatar"/>
+                <div className={s.name}>Akbar Gabdualiev</div>
+            </div>
+            <div className={s.message}>{props.message}</div>
             <div>
-                <span onClick={addLike}>{props.likes} Likes</span>
-                <div>{props.message}</div>
+                <span className={s.likesCount}>{props.likes}</span>
+                <img className={s.like} src={like} alt="" onClick={addLike}/>
             </div>
         </div>
     );

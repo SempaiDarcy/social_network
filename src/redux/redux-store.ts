@@ -12,3 +12,6 @@ export const store = legacy_createStore(reducers)
 export type StoreType = typeof store
 export type StateType = ReturnType<typeof reducers>
 export type DispatchType = typeof store.dispatch
+
+// @ts-ignore
+window.store = store;
