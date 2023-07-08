@@ -99,10 +99,13 @@ export type DialogType = {
     name: string;
 };
 export type UsersType = {
-    id:string,
-    photoUrl:string
+    id:number,
+    photos:{
+        small:string,
+        large:string
+    }
     followed:boolean,
-    fullName:string,
+    name:string,
     status:string,
     location:{
         country:string,

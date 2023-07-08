@@ -32,13 +32,13 @@ export const setUsersAC = (users:UsersType[]) => {
         users:users
     } as const
 }
-export const followAC = (userID:string) => {
+export const followAC = (userID:number) => {
     return {
         type:"FOLLOW",
         userId:userID
     }as const
 }
-export const unfollowAC = (userId:string):UnfollowAT => {
+export const unfollowAC = (userId:number):UnfollowAT => {
     return {
         type:"UNFOLLOW",
         userId:userId
@@ -48,6 +48,6 @@ export type SetUserAT = ReturnType<typeof setUsersAC>
 export type FollowAT = ReturnType<typeof followAC>
 export type UnfollowAT ={
     type:"UNFOLLOW",
-    userId:string
+    userId:number
 }
 
