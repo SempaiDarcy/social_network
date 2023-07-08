@@ -4,7 +4,7 @@ let initialState = {
     newPostText: '',
     posts:[
         {id: v1(), message: "Hi, how are you?", likes: 12},
-        {id: v1(), message: "Hi, how are you?", likes: 11},
+        {id: v1(), message: "Hello, I am fine", likes: 11},
     ]
 }
 export const profileReducer = (state:ProfilePageType = initialState,action:ActionDispatchType) => {

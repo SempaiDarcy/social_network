@@ -20,7 +20,7 @@ export const Post = (props: PropsType) => {
                 <div className={s.name}>Akbar Gabdualiev</div>
             </div>
             <div className={s.message}>{props.message}</div>
-            <div>
+            <div className={s.parent}>
                 <span className={s.likesCount}>{props.likes}</span>
                 <img className={s.like} src={like} alt="" onClick={addLike}/>
             </div>

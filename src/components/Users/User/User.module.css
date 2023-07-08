@@ -1,0 +1,17 @@
+.usersContainer {
+    display: flex;
+    flex-direction: column;
+}
+.avatar {
+    width: 10%;
+    border-radius: 80%;
+}
+.users {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+.user {
+    margin: 10px;
+    background-color: #fdf7aa;
+}

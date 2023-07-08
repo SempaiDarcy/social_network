@@ -5,6 +5,7 @@ import {Route, Switch} from "react-router-dom";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {Profile} from "./components/Profile/Profile";
 import {RootStateType} from "./redux/store";
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 type AppPropsType = {
     state:RootStateType
@@ -26,6 +27,7 @@ const App = (props:AppPropsType) => {
                         path={"/dialogs"}
                         render={() =>
                             <DialogsContainer/>}/>
+                    <Route path={"/users"} render={()=>(<UsersContainer/>)}/>
                     <Route path={'/news'} render={() => <div>news</div>}/>
                     <Route path={'/music'} render={() => <div>music</div>}/>
                     <Route path={'/settings'} render={() => <div>settings</div>}/>
