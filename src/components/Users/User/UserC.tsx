@@ -9,13 +9,12 @@ type UserPropsType = {
     unfollow:(userId:number)=>void
 }
 export class UserC extends Component<UserPropsType> {
-    constructor(props:UserPropsType) {
-        super(props);
-        alert("NEW")
+    componentDidMount() {
         axios.get("https://social-network.samuraijs.com/api/1.0/users").then((res)=>{
             this.props.setUsers(res.data.items)
         })
     }
+    // в классовой компоненте обязателен метод render() который будет возвращать тот самый jsx
     render() {
         return <div>
             <div className={s.usersContainer}>
