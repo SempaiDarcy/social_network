@@ -19,7 +19,6 @@ export const Users = (props:UserPropsType) => {
     return (
         <div>
             <div className={s.usersContainer}>
-                <h1>Users</h1>
                 <div className={s.pageLists}>
                     {pages.map((el, index) => {
                         return (

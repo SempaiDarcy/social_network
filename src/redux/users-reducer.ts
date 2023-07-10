@@ -4,7 +4,8 @@ let initialState= {
     users: [],
     pageSize: 5,
     totalUsersCount:0,
-    currentPage:1
+    currentPage:1,
+    isFetching:false
 }
 export const usersReducer = (state:UsersPageType= initialState,action:ActionDispatchType) => {
     switch (action.type) {
@@ -38,6 +39,12 @@ export const usersReducer = (state:UsersPageType= initialState,action:ActionDisp
                 ...state,totalUsersCount: action.count
             }
             return  newState
+        case "TOOGLE-IS-FETCHING":{
+            let newState = {
+                ...state,isFetching: action.isFetching
+            }
+            return newState
+        }
     }
     return state
 }
@@ -71,6 +78,13 @@ export const setUsersTotalCountAC = (totalCount:number) => {
         count:totalCount
     } as const
 }
+export const toogleIsFetchingAC = (isFetching:boolean) => {
+    return {
+        type:"TOOGLE-IS-FETCHING",
+        isFetching:isFetching
+    } as const
+}
+export type ToogleIsFetchingAT = ReturnType<typeof toogleIsFetchingAC>
 export type SetUsersTotalCountAT = ReturnType<typeof setUsersTotalCountAC>
 export type SetCurrentPageAT = ReturnType<typeof setCurrentPageAC>
 export type SetUserAT = ReturnType<typeof setUsersAC>
