@@ -5,7 +5,7 @@ import {Route, Switch} from "react-router-dom";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {Profile} from "./components/Profile/Profile";
 import {RootStateType} from "./redux/store";
-import {UsersContainer} from "./components/Users/UsersContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 type AppPropsType = {
     state:RootStateType
