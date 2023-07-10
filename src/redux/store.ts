@@ -1,6 +1,6 @@
 import {AddLikeAT, AddPostAT, ChangePostTextAT} from "./profile-reducer";
 import {AddMessageAT} from "./dialogs-reducer";
-import {FollowAT, SetUserAT, UnfollowAT} from "./users-reducer";
+import {FollowAT, SetUserAT, SetCurrentPageAT, UnfollowAT, SetUsersTotalCountAT} from "./users-reducer";
 
 // export let store: StoreType = {
 //     _state: {
@@ -74,7 +74,7 @@ export type StoreType = {
     _rerenderAllTree: () => void
 }
 
-export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT | AddLikeAT | FollowAT | UnfollowAT | SetUserAT
+export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT | AddLikeAT | FollowAT | UnfollowAT | SetUserAT | SetCurrentPageAT | SetUsersTotalCountAT
 
 export type RootStateType = {
     profilePage: ProfilePageType;
@@ -126,6 +126,10 @@ export type DialogsPageType = {
 };
 export type UsersPageType = {
     users:UsersType[]
+    pageSize:number,
+    totalUsersCount:number
+    currentPage:number
+
 }
 export type SidebarType = {};
 // @ts-ignore

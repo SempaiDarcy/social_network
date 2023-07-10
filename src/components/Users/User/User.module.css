@@ -3,7 +3,7 @@
     flex-direction: column;
 }
 .avatar {
-    width: 10%;
+    width: 50px;
     border-radius: 80%;
 }
 .users {
@@ -14,4 +14,16 @@
 .user {
     margin: 10px;
     background-color: #fdf7aa;
+}
+.pageLists {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.pagesButton {
+    cursor: pointer;
+}
+.selectedPage {
+    font-weight: bold;
+    background-color: #8c8d4f;
 }
