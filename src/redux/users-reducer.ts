@@ -48,46 +48,46 @@ export const usersReducer = (state:UsersPageType= initialState,action:ActionDisp
     }
     return state
 }
-export const setUsersAC = (users:UsersType[]) => {
+export const setUsers = (users:UsersType[]) => {
     return {
         type:"SET-USER",
         users:users
     } as const
 }
-export const followAC = (userID:number) => {
+export const follow = (userID:number) => {
     return {
         type:"FOLLOW",
         userId:userID
     }as const
 }
-export const unfollowAC = (userId:number) => {
+export const unfollow = (userId:number) => {
     return {
         type:"UNFOLLOW",
         userId:userId
     } as const
 }
-export const setCurrentPageAC = (currentPage:number) => {
+export const setCurrentPage = (currentPage:number) => {
     return {
         type:"SET-USERS-PAGE",
         currentPage:currentPage
     } as const
 }
-export const setUsersTotalCountAC = (totalCount:number) => {
+export const setUsersTotalCount = (totalCount:number) => {
     return {
         type:"SET-TOTAL-USERS-COUNT",
         count:totalCount
     } as const
 }
-export const toogleIsFetchingAC = (isFetching:boolean) => {
+export const toogleIsFetching = (isFetching:boolean) => {
     return {
         type:"TOOGLE-IS-FETCHING",
         isFetching:isFetching
     } as const
 }
-export type ToogleIsFetchingAT = ReturnType<typeof toogleIsFetchingAC>
-export type SetUsersTotalCountAT = ReturnType<typeof setUsersTotalCountAC>
-export type SetCurrentPageAT = ReturnType<typeof setCurrentPageAC>
-export type SetUserAT = ReturnType<typeof setUsersAC>
-export type FollowAT = ReturnType<typeof followAC>
-export type UnfollowAT = ReturnType<typeof unfollowAC>
+export type ToogleIsFetchingAT = ReturnType<typeof toogleIsFetching>
+export type SetUsersTotalCountAT = ReturnType<typeof setUsersTotalCount>
+export type SetCurrentPageAT = ReturnType<typeof setCurrentPage>
+export type SetUserAT = ReturnType<typeof setUsers>
+export type FollowAT = ReturnType<typeof follow>
+export type UnfollowAT = ReturnType<typeof unfollow>
 
