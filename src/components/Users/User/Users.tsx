@@ -1,6 +1,7 @@
 import s from "./User.module.css";
 import React from "react";
 import {UsersType} from "../../../redux/store";
+import {NavLink} from "react-router-dom";
 type UserPropsType = {
     users: UsersType[],
     pageSize:number,
@@ -32,9 +33,9 @@ export const Users = (props:UserPropsType) => {
                         return (
                             <div className={s.user} key={el.id}>
                                 <div>Full name: <span>{el.name}</span></div>
-                                <img className={s.avatar}
-                                     src={el.photos.small !== null ? el.photos.small : "https://avatars.mds.yandex.net/i?id=0bbeac957963e13882ae83d5c690a08e603d7664-7803878-images-thumbs&n=13"}
-                                     alt=""/>
+                                <NavLink to={'/profile/' + el.id}><img className={s.avatar}
+                                        src={el.photos.small !== null ? el.photos.small : "https://avatars.mds.yandex.net/i?id=0bbeac957963e13882ae83d5c690a08e603d7664-7803878-images-thumbs&n=13"}
+                                        alt=""/></NavLink>
                                 {/*<div>Status: <span>{el.status}</span></div>*/}
                                 {/*<div>Country: <span>{el.location.country}</span></div>*/}
                                 {/*<div>City: <span>{el.location.city}</span></div>*/}

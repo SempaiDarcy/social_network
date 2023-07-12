@@ -1,11 +1,32 @@
-import {ActionDispatchType, PostType, ProfilePageType} from "./store";
+import {ActionDispatchType, PostType, ProfilePageType, ProfileType} from "./store";
 import {v1} from "uuid";
 let initialState = {
     newPostText: '',
     posts:[
         {id: v1(), message: "Hi, how are you?", likes: 12},
         {id: v1(), message: "Hello, I am fine", likes: 11},
-    ]
+    ],
+    profile: {
+        aboutMe: '',
+        contacts: {
+            facebook: '',
+            website: '',
+            vk: '',
+            twitter: '',
+            instagram: '',
+            youtube: '',
+            github: '',
+            mainLink: '',
+        },
+        lookingForAJob: false,
+        lookingForAJobDescription: '',
+        fullName: '',
+        userId: 0,
+        photos: {
+            small: '',
+            large: '',
+        }
+    }
 }
 export const profileReducer = (state:ProfilePageType = initialState,action:ActionDispatchType) => {
     switch (action.type) {
@@ -15,7 +36,7 @@ export const profileReducer = (state:ProfilePageType = initialState,action:Actio
                 message: state.newPostText,
                 likes: 0
             }
-            let newState = {...state, posts: [newPost,...state.posts]}
+            let newState = {...state, posts: [newPost, ...state.posts]}
             return newState
         }
         case "CHANGE-NEW-TEXT": {
@@ -24,7 +45,16 @@ export const profileReducer = (state:ProfilePageType = initialState,action:Actio
             return newState
         }
         case "ADD-LIKE": {
-            let newState = {...state,posts:state.posts.map((el)=>el.id===action.id?{...el,likes:action.count}:el)}
+            let newState = {
+                ...state,
+                posts: state.posts.map((el) => el.id === action.id ? {...el, likes: action.count} : el)
+            }
+            return newState
+        }
+        case "SET-USER-PROFILE": {
+            let newState = {
+                ...state, profile: action.profile
+            }
             return newState
         }
     }
@@ -33,15 +63,22 @@ export const profileReducer = (state:ProfilePageType = initialState,action:Actio
 export const addPostAC = () => {
     return {type:"ADD-POST"} as const
 }
-export type AddPostAT = ReturnType<typeof addPostAC>
 export const changeNewTextAC = (newText:string):ChangePostTextAT => {
     return {type:"CHANGE-NEW-TEXT",newText:newText}
 }
+export const addLikeAC = (count:number,id:string) => {
+    return {type:"ADD-LIKE",count:count,id:id} as const
+}
+export const setUserProfile = (profile:ProfileType) => {
+    return {
+        type:'SET-USER-PROFILE',
+        profile:profile
+    }as const
+}
+export type SetUserProfileAT = ReturnType<typeof setUserProfile>
+export type AddPostAT = ReturnType<typeof addPostAC>
 export type ChangePostTextAT = {
     type:"CHANGE-NEW-TEXT",
     newText:string
-}
-export const addLikeAC = (count:number,id:string) => {
-    return {type:"ADD-LIKE",count:count,id:id} as const
 }
 export type AddLikeAT = ReturnType<typeof addLikeAC>

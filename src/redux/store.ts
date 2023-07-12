@@ -1,4 +1,4 @@
-import {AddLikeAT, AddPostAT, ChangePostTextAT} from "./profile-reducer";
+import {AddLikeAT, AddPostAT, ChangePostTextAT, SetUserProfileAT} from "./profile-reducer";
 import {AddMessageAT} from "./dialogs-reducer";
 import {
     FollowAT,
@@ -81,12 +81,11 @@ export type StoreType = {
     _rerenderAllTree: () => void
 }
 
-export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT | AddLikeAT | FollowAT | UnfollowAT | SetUserAT | SetCurrentPageAT | SetUsersTotalCountAT | ToogleIsFetchingAT
+export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT | AddLikeAT | FollowAT | UnfollowAT | SetUserAT | SetCurrentPageAT | SetUsersTotalCountAT | ToogleIsFetchingAT |SetUserProfileAT
 
 export type RootStateType = {
     profilePage: ProfilePageType;
     dialogsPage: DialogsPageType;
-    user: UserType;
     usersPage:UsersPageType
 };
 export type UserType = {
@@ -125,8 +124,30 @@ export type MessageType = {
 }
 export type ProfilePageType = {
     posts: PostType[];
-    newPostText:string
+    newPostText:string,
+    profile:ProfileType
 };
+export type ProfileType = {
+    "aboutMe": string,
+    "contacts": {
+        "facebook": string,
+        "website": string,
+        "vk": string,
+        "twitter": string,
+        "instagram": string,
+        "youtube": string,
+        "github": string,
+        "mainLink": string
+    },
+    "lookingForAJob": boolean,
+    "lookingForAJobDescription": string,
+    "fullName": string,
+    "userId": number,
+    "photos": {
+        "small": string,
+        "large": string
+    }
+}
 export type DialogsPageType = {
     dialogs: DialogType[];
     messages: MessageType[]

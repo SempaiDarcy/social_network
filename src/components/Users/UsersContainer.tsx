@@ -69,7 +69,7 @@ class UsersContainer extends Component<UserPropsType> {
     }
 }
 
-export const mapStateToProps = (state: StateType) => {
+ const mapStateToProps = (state: StateType) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,

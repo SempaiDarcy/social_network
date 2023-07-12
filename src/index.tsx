@@ -10,7 +10,7 @@ const rerenderEntireTree = () => {
         <BrowserRouter>
             <Provider store={store}>
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <App state={store.getState()}/>
+                    <App/>
                 </div>
             </Provider>
         </BrowserRouter>,

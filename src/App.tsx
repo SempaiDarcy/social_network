@@ -3,14 +3,11 @@ import "./App.css";
 import {Navigation} from "./components/Navigation/Navigation";
 import {Route, Switch} from "react-router-dom";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {Profile} from "./components/Profile/Profile";
-import {RootStateType} from "./redux/store";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
-type AppPropsType = {
-    state:RootStateType
-}
-const App = (props:AppPropsType) => {
+
+const App = () => {
     return (
         <div className="app-wrapper">
             <Header/>
@@ -20,7 +17,7 @@ const App = (props:AppPropsType) => {
                     <Route
                         path={"/profile"}
                         render={() => (
-                            <Profile user={props.state.user} postData={props.state.profilePage.posts}/>
+                            <ProfileContainer/>
                         )}
                     />
                     <Route
