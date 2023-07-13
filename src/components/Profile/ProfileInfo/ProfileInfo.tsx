@@ -2,11 +2,15 @@ import React from 'react';
 import wall from "../../../images/wall.jpg";
 import s from './ProfileInfo.module.css';
 import {ProfileType} from "../../../redux/store";
+import {Loader} from "../../common/Loader/Loader";
 
 type ProfileInfoPropsType = {
     profile:ProfileType
 }
 export const ProfileInfo = (props: ProfileInfoPropsType) => {
+    if(!props.profile) {
+        return <Loader/>
+    }
     return (
         <div>
             <div>
@@ -19,7 +23,7 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
                         <tbody>
                         <tr>
                             <td className={s.avatarContainer}>
-                                <img className={s.avatarImage} src={props.profile.photos.large} alt="avatar"/>
+                                <img className={s.avatarImage} src={props.profile.photos.large!==null?props.profile.photos.large:"https://avatars.mds.yandex.net/i?id=0bbeac957963e13882ae83d5c690a08e603d7664-7803878-images-thumbs&n=13"} alt="avatar"/>
                             </td>
                             <td className={s.dataContainer}>
                                 <div className={s.name}>{props.profile.fullName}</div>

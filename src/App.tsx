@@ -15,7 +15,7 @@ const App = () => {
             <div className="app-wrapper-content">
                 <Switch>
                     <Route
-                        path={"/profile"}
+                        path={"/profile/:userID?"}
                         render={() => (
                             <ProfileContainer/>
                         )}
