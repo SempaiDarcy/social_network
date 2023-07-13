@@ -9,7 +9,7 @@
   padding-bottom: 5px;
   background-color: transparent;
   font-size: 20px;
-
+  cursor: pointer;
 }
 .item:hover{
   background-color: #d1f5fd;

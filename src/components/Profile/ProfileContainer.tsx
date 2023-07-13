@@ -37,5 +37,5 @@ const mapStateToProps = (state:RootStateType):mapStateToPropsType => {
         profile:state.profilePage.profile
     }
 }
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
+const WithUrlDataContainerComponent = withRouter(ProfileContainer)
 export default connect (mapStateToProps,{setUserProfile})(WithUrlDataContainerComponent)

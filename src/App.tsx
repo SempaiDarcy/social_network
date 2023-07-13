@@ -1,16 +1,16 @@
-import {Header} from "./components/Header/Header";
-import "./App.css";
 import {Navigation} from "./components/Navigation/Navigation";
 import {Route, Switch} from "react-router-dom";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import "./App.css";
 
 
 const App = () => {
     return (
         <div className="app-wrapper">
-            <Header/>
+            <HeaderContainer/>
             <Navigation/>
             <div className="app-wrapper-content">
                 <Switch>

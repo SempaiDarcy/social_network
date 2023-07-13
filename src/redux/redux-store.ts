@@ -2,13 +2,13 @@ import {combineReducers, legacy_createStore} from "redux";
 import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
 import {usersReducer} from "./users-reducer";
-import {userReducer} from "./userReducer";
+import {authReducer} from "./auth-reducer";
 
 const reducers = combineReducers({
     profilePage:profileReducer,
     dialogsPage:dialogsReducer,
-    user:userReducer,
-    usersPage:usersReducer
+    usersPage:usersReducer,
+    auth:authReducer
 })
 export const store = legacy_createStore(reducers)
 export type StoreType = typeof store

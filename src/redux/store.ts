@@ -8,6 +8,7 @@ import {
     SetUsersTotalCountAT,
     ToogleIsFetchingAT
 } from "./users-reducer";
+import {SetUserDataAT} from "./auth-reducer";
 
 // export let store: StoreType = {
 //     _state: {
@@ -81,19 +82,19 @@ export type StoreType = {
     _rerenderAllTree: () => void
 }
 
-export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT | AddLikeAT | FollowAT | UnfollowAT | SetUserAT | SetCurrentPageAT | SetUsersTotalCountAT | ToogleIsFetchingAT |SetUserProfileAT
+export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT | AddLikeAT | FollowAT | UnfollowAT | SetUserAT | SetCurrentPageAT | SetUsersTotalCountAT | ToogleIsFetchingAT |SetUserProfileAT | SetUserDataAT
 
 export type RootStateType = {
-    profilePage: ProfilePageType;
-    dialogsPage: DialogsPageType;
-    usersPage:UsersPageType
+    profilePage: ProfilePageType,
+    dialogsPage: DialogsPageType,
+    usersPage:UsersPageType,
+    auth:UserType
 };
 export type UserType = {
-    id: string,
-    name: string,
-    city: string,
-    site: string,
-    avatar: string
+    userId: string,
+    email:string,
+    login:string
+    isAuth:boolean
 }
 export type PostType = {
     id: string;
