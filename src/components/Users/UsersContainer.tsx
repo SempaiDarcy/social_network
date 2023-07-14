@@ -35,7 +35,9 @@ type mapDispatchToPropsType = {
 class UsersContainer extends Component<UserPropsType> {
     componentDidMount() {
         this.props.toogleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then((res) => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
+            withCredentials:true
+        }).then((res) => {
             this.props.toogleIsFetching(false)
             this.props.setUsers(res.data.items)
             this.props.setUsersTotalCount(res.data.totalCount)
@@ -45,7 +47,9 @@ class UsersContainer extends Component<UserPropsType> {
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         this.props.toogleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then((res) => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,{
+            withCredentials:true
+        }).then((res) => {
             this.props.toogleIsFetching(false)
             this.props.setUsers(res.data.items)
         })
