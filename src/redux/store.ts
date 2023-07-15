@@ -6,7 +6,7 @@ import {
     SetCurrentPageAT,
     UnfollowAT,
     SetUsersTotalCountAT,
-    ToogleIsFetchingAT
+    ToogleIsFetchingAT, ToogleIsFollowingAT
 } from "./users-reducer";
 import {SetUserDataAT} from "./auth-reducer";
 
@@ -82,7 +82,7 @@ export type StoreType = {
     _rerenderAllTree: () => void
 }
 
-export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT | AddLikeAT | FollowAT | UnfollowAT | SetUserAT | SetCurrentPageAT | SetUsersTotalCountAT | ToogleIsFetchingAT |SetUserProfileAT | SetUserDataAT
+export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT | AddLikeAT | FollowAT | UnfollowAT | SetUserAT | SetCurrentPageAT | SetUsersTotalCountAT | ToogleIsFetchingAT |SetUserProfileAT | SetUserDataAT |ToogleIsFollowingAT
 
 export type RootStateType = {
     profilePage: ProfilePageType,
@@ -159,6 +159,7 @@ export type UsersPageType = {
     totalUsersCount:number
     currentPage:number
     isFetching:boolean
+    followingInProgress:Array<number>
 }
 export type SidebarType = {};
 // @ts-ignore

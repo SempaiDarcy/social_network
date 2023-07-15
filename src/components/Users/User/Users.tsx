@@ -12,6 +12,8 @@ type UserPropsType = {
     follow: (userId: number) => void,
     unfollow: (userId: number) => void,
     onPageChanged: (pageNumber: number) => void
+    followingInProgress:number[]
+    toogleFollowingProgress:(isFetching:boolean,userId:number)=>void
 }
 export const Users = (props: UserPropsType) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -45,22 +47,23 @@ export const Users = (props: UserPropsType) => {
                                 {/*<div>Status: <span>{el.status}</span></div>*/}
                                 {/*<div>Country: <span>{el.location.country}</span></div>*/}
                                 {/*<div>City: <span>{el.location.city}</span></div>*/}
-                                <div>{el.followed ? <button onClick={() => {
-
+                                <div>{el.followed ? <button disabled={props.followingInProgress.some(id=>id===el.id)} onClick={() => {
+                                    props.toogleFollowingProgress(true,el.id)
                                     usersAPI.deleteUnfollow(el.id).then(data=>{
                                             if(data.resultCode===0) {
                                                 props.unfollow(el.id)
                                             }
+                                            props.toogleFollowingProgress(false,el.id)
                                         })
                                     }}>Unfollow</button>
-                                    : <button onClick={() => {
-
+                                    : <button disabled={props.followingInProgress.some(id=>id===el.id)} onClick={() => {
+                                        props.toogleFollowingProgress(true,el.id)
                                         usersAPI.postFollow(el.id).then(data=>{
                                             if(data.resultCode===0) {
                                                 props.follow(el.id)
                                             }
+                                            props.toogleFollowingProgress(false,el.id)
                                         })
-
                                     }}>Follow</button>}</div>
                             </div>)
                     })}

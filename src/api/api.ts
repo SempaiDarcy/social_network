@@ -29,7 +29,7 @@ export const usersAPI = {
         })
     },
     getAuth (){
-        return axios.get(`auth/me`).then(res=>{
+        return instance.get(`auth/me`).then(res=>{
             return res.data
         })
     }
