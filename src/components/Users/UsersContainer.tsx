@@ -9,10 +9,10 @@ import {
     unfollow
 } from "../../redux/users-reducer";
 import React, {Component} from 'react';
-import axios from "axios";
 import {UsersType} from "../../redux/store";
 import {Users} from "./User/Users";
 import {Loader} from "../common/Loader/Loader";
+import {getUsers} from "../../api/api";
 
 type UserPropsType = mapStateToPropsType & mapDispatchToPropsType
 
@@ -35,23 +35,19 @@ type mapDispatchToPropsType = {
 class UsersContainer extends Component<UserPropsType> {
     componentDidMount() {
         this.props.toogleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
-            withCredentials:true
-        }).then((res) => {
+        getUsers(this.props.currentPage,this.props.pageSize).then(data => {
             this.props.toogleIsFetching(false)
-            this.props.setUsers(res.data.items)
-            this.props.setUsersTotalCount(res.data.totalCount)
+            this.props.setUsers(data.items)
+            this.props.setUsersTotalCount(data.totalCount)
         })
     }
 
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         this.props.toogleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,{
-            withCredentials:true
-        }).then((res) => {
+        getUsers(pageNumber,this.props.pageSize).then(data => {
             this.props.toogleIsFetching(false)
-            this.props.setUsers(res.data.items)
+            this.props.setUsers(data.items)
         })
     }
 
