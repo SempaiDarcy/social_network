@@ -4,7 +4,7 @@ import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {setUserProfile} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import {getUserProfile} from "../../api/api";
+import { usersAPI} from "../../api/api";
 
 type ProfileContainerPropsType = mapStateToPropsType & mapDispatchToPropsType
 
@@ -21,7 +21,7 @@ type ContentPropsType = RouteComponentProps<PathParamsType> & ProfileContainerPr
 class ProfileContainer extends Component<ContentPropsType> {
     componentDidMount() {
         // let userId=this.props.match.params.userID
-       getUserProfile(this.props.match.params.userID).then((data)=>{
+       usersAPI.getUserProfile(this.props.match.params.userID).then((data)=>{
             this.props.setUserProfile(data)
         })
     }

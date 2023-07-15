@@ -2,7 +2,7 @@ import s from "./User.module.css";
 import React from "react";
 import {UsersType} from "../../../redux/store";
 import {NavLink} from "react-router-dom";
-import {deleteUnfollow, postFollow} from "../../../api/api";
+import {usersAPI} from "../../../api/api";
 
 type UserPropsType = {
     users: UsersType[],
@@ -46,14 +46,16 @@ export const Users = (props: UserPropsType) => {
                                 {/*<div>Country: <span>{el.location.country}</span></div>*/}
                                 {/*<div>City: <span>{el.location.city}</span></div>*/}
                                 <div>{el.followed ? <button onClick={() => {
-                                        deleteUnfollow(el.id).then(data=>{
+
+                                    usersAPI.deleteUnfollow(el.id).then(data=>{
                                             if(data.resultCode===0) {
                                                 props.unfollow(el.id)
                                             }
                                         })
                                     }}>Unfollow</button>
                                     : <button onClick={() => {
-                                        postFollow(el.id).then(data=>{
+
+                                        usersAPI.postFollow(el.id).then(data=>{
                                             if(data.resultCode===0) {
                                                 props.follow(el.id)
                                             }

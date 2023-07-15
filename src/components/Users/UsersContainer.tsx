@@ -12,7 +12,7 @@ import React, {Component} from 'react';
 import {UsersType} from "../../redux/store";
 import {Users} from "./User/Users";
 import {Loader} from "../common/Loader/Loader";
-import {getUsers} from "../../api/api";
+import {usersAPI} from "../../api/api";
 
 type UserPropsType = mapStateToPropsType & mapDispatchToPropsType
 
@@ -35,7 +35,7 @@ type mapDispatchToPropsType = {
 class UsersContainer extends Component<UserPropsType> {
     componentDidMount() {
         this.props.toogleIsFetching(true)
-        getUsers(this.props.currentPage,this.props.pageSize).then(data => {
+        usersAPI.getUsers(this.props.currentPage,this.props.pageSize).then(data => {
             this.props.toogleIsFetching(false)
             this.props.setUsers(data.items)
             this.props.setUsersTotalCount(data.totalCount)
@@ -45,7 +45,7 @@ class UsersContainer extends Component<UserPropsType> {
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         this.props.toogleIsFetching(true)
-        getUsers(pageNumber,this.props.pageSize).then(data => {
+        usersAPI.getUsers(pageNumber,this.props.pageSize).then(data => {
             this.props.toogleIsFetching(false)
             this.props.setUsers(data.items)
         })
