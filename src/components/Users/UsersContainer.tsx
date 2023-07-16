@@ -5,11 +5,12 @@ import {
     getUsersTC, postUsersTC,
     setCurrentPage,
 } from "../../redux/users-reducer";
-import React, {Component} from 'react';
+import React, {Component, ComponentType} from 'react';
 import {UsersType} from "../../redux/store";
 import {Users} from "./User/Users";
 import {Loader} from "../common/Loader/Loader";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 type UserPropsType = mapStateToPropsType & mapDispatchToPropsType
 
@@ -75,9 +76,15 @@ const mapStateToProps = (state: StateType) => {
 //     toogleIsFetching:toogleIsFetching
 // })(UsersContainer)
 
-export default WithAuthRedirect(connect(mapStateToProps, {
+// export default WithAuthRedirect(connect(mapStateToProps, {
+//     setCurrentPage,
+//     getUsersTC,
+//     deleteUsersTC,
+//     postUsersTC
+// })(UsersContainer))
+export default compose<ComponentType>(connect(mapStateToProps, {
     setCurrentPage,
     getUsersTC,
     deleteUsersTC,
     postUsersTC
-})(UsersContainer))
+} as mapDispatchToPropsType),WithAuthRedirect)(UsersContainer)
