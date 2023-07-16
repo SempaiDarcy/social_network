@@ -2,13 +2,15 @@ import {connect} from "react-redux";
 import {StateType} from "../../redux/redux-store";
 import {
     deleteUsersTC,
- getUsersTC, postUsersTC,
+    getUsersTC, postUsersTC,
     setCurrentPage,
 } from "../../redux/users-reducer";
 import React, {Component} from 'react';
 import {UsersType} from "../../redux/store";
 import {Users} from "./User/Users";
 import {Loader} from "../common/Loader/Loader";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+
 type UserPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 type mapStateToPropsType = {
@@ -17,29 +19,28 @@ type mapStateToPropsType = {
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean,
-    followingInProgress:number[],
-    isAuth:boolean
+    followingInProgress: number[],
 }
 type mapDispatchToPropsType = {
-    deleteUsersTC:(userId:number)=>void,
-    getUsersTC:(currentPage:number,pageSize:number)=>void,
-    postUsersTC:(userId:number)=>void
+    deleteUsersTC: (userId: number) => void,
+    getUsersTC: (currentPage: number, pageSize: number) => void,
+    postUsersTC: (userId: number) => void
 }
 
 class UsersContainer extends Component<UserPropsType> {
     componentDidMount() {
-        this.props.getUsersTC(this.props.currentPage,this.props.pageSize)
+        this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsersTC(pageNumber,this.props.pageSize)
+        this.props.getUsersTC(pageNumber, this.props.pageSize)
     }
 
     // в классовой компоненте обязателен метод render() который будет возвращать тот самый jsx
     render() {
         return <>
             <h1>Users</h1>
-            {this.props.isFetching ?<Loader/>  :
+            {this.props.isFetching ? <Loader/> :
                 <Users
                     users={this.props.users}
                     pageSize={this.props.pageSize}
@@ -49,13 +50,12 @@ class UsersContainer extends Component<UserPropsType> {
                     followingInProgress={this.props.followingInProgress}
                     deleteUsersTC={this.props.deleteUsersTC}
                     postUsersTC={this.props.postUsersTC}
-                    isAuth={this.props.isAuth}
                 />}
         </>
     }
 }
 
- const mapStateToProps = (state: StateType) => {
+const mapStateToProps = (state: StateType) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -63,7 +63,6 @@ class UsersContainer extends Component<UserPropsType> {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress,
-        isAuth:state.auth.isAuth
     }
 }
 
@@ -76,9 +75,9 @@ class UsersContainer extends Component<UserPropsType> {
 //     toogleIsFetching:toogleIsFetching
 // })(UsersContainer)
 
-export default connect(mapStateToProps, {
+export default WithAuthRedirect(connect(mapStateToProps, {
     setCurrentPage,
     getUsersTC,
     deleteUsersTC,
     postUsersTC
-})(UsersContainer)
+})(UsersContainer))

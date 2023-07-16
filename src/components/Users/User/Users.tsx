@@ -1,7 +1,7 @@
 import s from "./User.module.css";
 import React from "react";
 import {UsersType} from "../../../redux/store";
-import {NavLink, Redirect} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 type UserPropsType = {
     users: UsersType[],
@@ -12,7 +12,6 @@ type UserPropsType = {
     followingInProgress:number[]
     deleteUsersTC:(userId:number)=>void
     postUsersTC:(userId:number)=>void
-    isAuth:boolean
 }
 export const Users = (props: UserPropsType) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -21,9 +20,9 @@ export const Users = (props: UserPropsType) => {
         pages.push(i)
     }
 
-    if(!props.isAuth){
-        return <Redirect to={'/login'}/>
-    }
+    // if(!props.isAuth){
+    //     return <Redirect to={'/login'}/>
+    // }
     return (
         <div>
             <div className={s.usersContainer}>
