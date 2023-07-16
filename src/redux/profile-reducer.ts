@@ -1,5 +1,7 @@
 import {ActionDispatchType, PostType, ProfilePageType, ProfileType} from "./store";
 import {v1} from "uuid";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 let initialState = {
     newPostText: '',
     posts:[
@@ -82,3 +84,8 @@ export type ChangePostTextAT = {
     newText:string
 }
 export type AddLikeAT = ReturnType<typeof addLikeAC>
+export const getUserProfileTC = (userID:string) => (dispatch:Dispatch) => {
+    usersAPI.getUserProfile(userID).then((data)=>{
+        dispatch(setUserProfile(data))
+    })
+}

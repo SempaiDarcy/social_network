@@ -2,18 +2,16 @@ import s from "./User.module.css";
 import React from "react";
 import {UsersType} from "../../../redux/store";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../../api/api";
 
 type UserPropsType = {
     users: UsersType[],
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
-    follow: (userId: number) => void,
-    unfollow: (userId: number) => void,
     onPageChanged: (pageNumber: number) => void
     followingInProgress:number[]
-    toogleFollowingProgress:(isFetching:boolean,userId:number)=>void
+    deleteUsersTC:(userId:number)=>void
+    postUsersTC:(userId:number)=>void
 }
 export const Users = (props: UserPropsType) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -48,22 +46,10 @@ export const Users = (props: UserPropsType) => {
                                 {/*<div>Country: <span>{el.location.country}</span></div>*/}
                                 {/*<div>City: <span>{el.location.city}</span></div>*/}
                                 <div>{el.followed ? <button disabled={props.followingInProgress.some(id=>id===el.id)} onClick={() => {
-                                    props.toogleFollowingProgress(true,el.id)
-                                    usersAPI.deleteUnfollow(el.id).then(data=>{
-                                            if(data.resultCode===0) {
-                                                props.unfollow(el.id)
-                                            }
-                                            props.toogleFollowingProgress(false,el.id)
-                                        })
+                                    props.deleteUsersTC(el.id)
                                     }}>Unfollow</button>
                                     : <button disabled={props.followingInProgress.some(id=>id===el.id)} onClick={() => {
-                                        props.toogleFollowingProgress(true,el.id)
-                                        usersAPI.postFollow(el.id).then(data=>{
-                                            if(data.resultCode===0) {
-                                                props.follow(el.id)
-                                            }
-                                            props.toogleFollowingProgress(false,el.id)
-                                        })
+                                       props.postUsersTC(el.id)
                                     }}>Follow</button>}</div>
                             </div>)
                     })}
