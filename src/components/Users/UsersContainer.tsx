@@ -17,7 +17,8 @@ type mapStateToPropsType = {
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean,
-    followingInProgress:number[]
+    followingInProgress:number[],
+    isAuth:boolean
 }
 type mapDispatchToPropsType = {
     deleteUsersTC:(userId:number)=>void,
@@ -48,6 +49,7 @@ class UsersContainer extends Component<UserPropsType> {
                     followingInProgress={this.props.followingInProgress}
                     deleteUsersTC={this.props.deleteUsersTC}
                     postUsersTC={this.props.postUsersTC}
+                    isAuth={this.props.isAuth}
                 />}
         </>
     }
@@ -60,7 +62,8 @@ class UsersContainer extends Component<UserPropsType> {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        followingInProgress: state.usersPage.followingInProgress,
+        isAuth:state.auth.isAuth
     }
 }
 

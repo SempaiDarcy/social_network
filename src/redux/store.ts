@@ -91,9 +91,9 @@ export type RootStateType = {
     auth:UserType
 };
 export type UserType = {
-    userId: string,
-    email:string,
-    login:string
+    id: number|null,
+    email:string|null,
+    login:string|null
     isAuth:boolean
 }
 export type PostType = {

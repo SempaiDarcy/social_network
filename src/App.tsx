@@ -5,6 +5,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import "./App.css";
+import {Login} from "./components/Login/Login";
 
 
 const App = () => {
@@ -14,6 +15,9 @@ const App = () => {
             <Navigation/>
             <div className="app-wrapper-content">
                 <Switch>
+                    <Route path={'/login'} render={()=>
+                        <Login/>
+                    }/>
                     <Route
                         path={"/profile/:userID?"}
                         render={() => (

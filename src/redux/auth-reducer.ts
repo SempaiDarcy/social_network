@@ -1,15 +1,15 @@
-import {ActionDispatchType} from "./store";
+import {ActionDispatchType, UserType} from "./store";
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 
-let initialState = {
+let initialState:UserType = {
     id: null,
     email: null,
     login: null,
     isAuth:false
 }
 
-export const authReducer = (state=initialState,action:ActionDispatchType) => {
+export const authReducer = (state= initialState,action:ActionDispatchType):UserType => {
     switch (action.type) {
         case "SET-USER-DATA":
             return {
@@ -20,11 +20,11 @@ export const authReducer = (state=initialState,action:ActionDispatchType) => {
     }
     return state
 }
-export const setAuthUserData = (userId:string,email:string,login:string) => {
+export const setAuthUserData = (id:number,email:string,login:string) => {
     return {
         type:"SET-USER-DATA",
         data:{
-            userId:userId,
+            id:id,
             email:email,
             login:login
         }

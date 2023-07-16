@@ -2,11 +2,13 @@ import s from "./Dialogs.module.css";
 import {Dialog} from "./Dialog/Dialog";
 import {DialogType, MessageType} from "../../redux/store";
 import {ChangeEvent, useRef, useState} from "react";
+import {Redirect} from "react-router-dom";
 
 type DialogsPropsType = {
     dialogsData: DialogType[];
     messagesData: MessageType[]
     sendMessage:(message:string) => void
+    isAuth:boolean
 };
 export const Dialogs = (props: DialogsPropsType) => {
     const [messageText, setMessageText] = useState("")
@@ -19,6 +21,9 @@ export const Dialogs = (props: DialogsPropsType) => {
     }
     const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setMessageText(e.target.value)
+    }
+    if(!props.isAuth) {
+        return <Redirect to={'/login'}/>
     }
     return (
         <div className={s.dialogs}>
