@@ -1,39 +1,39 @@
-import React, {Component} from 'react';
-import {ProfileType} from "../../../../redux/store";
+import React, {ChangeEvent, Component} from 'react';
 
 type ProfileStatusPropsType = {
-    profile: ProfileType
+    status:string
+    updateStatus:(status: string)=>void
 }
 
 export class ProfileStatus extends Component<ProfileStatusPropsType> {
     state = {
-        editMode: false
+        editMode: false,
+        status:this.props.status
     }
-    activateEditMode ()  {
+    activateEditMode = () => {
          this.setState({
              editMode:true
          })
     }
-    deactivateEditMode () {
+    deactivateEditMode = () => {
         this.setState({
             editMode:false
         })
+        this.props.updateStatus(this.state.status)
+    }
+    onChangeStatus = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        this.setState({
+            status: e.currentTarget.value
+        })
     }
     render() {
-        console.log(this.state.editMode)
         return (
             <div>
-                <h5>STATUS</h5>
+                STATUS:
                 {!this.state.editMode
-                    ? <div>
-                        <span onClick={this.activateEditMode.bind(this)}>{this.props.profile.aboutMe}</span>
-                    </div>
-                    : <div>
-                        <input autoFocus={true} onBlur={this.deactivateEditMode.bind(this)} value={this.props.profile.aboutMe} onChange={()=>{}}/>
-                    </div>
+                    ? <span onClick={this.activateEditMode}> {this.props.status? ' ' + this.props.status:' -'}</span>
+                    : <input autoFocus={true} onBlur={this.deactivateEditMode} value={this.state.status} onChange={this.onChangeStatus}/>
                 }
-
-
             </div>
         );
     }

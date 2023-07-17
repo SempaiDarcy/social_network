@@ -13,11 +13,31 @@ export const usersAPI = {
             return res.data
         })
     },
+
+}
+export const authAPI = {
+    getAuth (){
+        return instance.get(`auth/me`).then(res=>{
+            return res.data
+        })
+    }
+}
+export const profileAPI = {
     getUserProfile(userID: string) {
+        if (!userID) userID = '27503'
         return instance.get(`profile/${userID !== undefined ? userID : 2}`).then(res => {
             return res.data
         })
     },
+    getStatusProfile(userID:string) {
+        if(!userID) userID='27503'
+        return instance.get(`profile/status/${userID}`)
+    },
+    updateStatusProfile(status:string) {
+        return instance.put(`profile/status`,{status:status})
+    }
+}
+export const followAPI = {
     postFollow  (id:number)  {
         return instance.post(`follow/${id}`).then(res=>{
             return res.data
@@ -25,13 +45,6 @@ export const usersAPI = {
     },
     deleteUnfollow (id:number) {
         return instance.delete(`follow/${id}`).then(res=>{
-            return res.data
-        })
-    }
-}
-export const authAPI= {
-    getAuth (){
-        return instance.get(`auth/me`).then(res=>{
             return res.data
         })
     }

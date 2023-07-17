@@ -1,4 +1,10 @@
-import {AddLikeAT, AddPostAT, ChangePostTextAT, SetUserProfileAT} from "./profile-reducer";
+import {
+    AddLikeAT,
+    AddPostAT,
+    ChangePostTextAT,
+    SetUserProfileAT,
+    SetUserStatusProfileAT,
+} from "./profile-reducer";
 import {AddMessageAT} from "./dialogs-reducer";
 import {
     FollowAT,
@@ -82,7 +88,7 @@ export type StoreType = {
     _rerenderAllTree: () => void
 }
 
-export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT | AddLikeAT | FollowAT | UnfollowAT | SetUserAT | SetCurrentPageAT | SetUsersTotalCountAT | ToogleIsFetchingAT |SetUserProfileAT | SetUserDataAT |ToogleIsFollowingAT
+export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT | AddLikeAT | FollowAT | UnfollowAT | SetUserAT | SetCurrentPageAT | SetUsersTotalCountAT | ToogleIsFetchingAT |SetUserProfileAT | SetUserDataAT |ToogleIsFollowingAT | SetUserStatusProfileAT
 
 export type RootStateType = {
     profilePage: ProfilePageType,
@@ -127,6 +133,7 @@ export type ProfilePageType = {
     posts: PostType[];
     newPostText:string,
     profile:ProfileType
+    status:string
 };
 export type ProfileType = {
     "aboutMe": string,

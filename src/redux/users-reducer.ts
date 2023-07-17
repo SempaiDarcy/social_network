@@ -1,5 +1,5 @@
 import {ActionDispatchType, UsersPageType, UsersType} from "./store";
-import {usersAPI} from "../api/api";
+import {followAPI, usersAPI} from "../api/api";
 import {Dispatch} from "redux";
 
 let initialState = {
@@ -124,7 +124,7 @@ export const getUsersTC = (param1:number,pageSize:number) => (dispatch: Dispatch
 export const deleteUsersTC = (userId:number) => {
     return (dispatch:Dispatch) => {
         dispatch(toogleFollowingProgress(true,userId))
-        usersAPI.deleteUnfollow(userId).then(data=>{
+        followAPI.deleteUnfollow(userId).then(data=>{
             if(data.resultCode===0) {
                dispatch(unfollow(userId))
             }
@@ -134,7 +134,7 @@ export const deleteUsersTC = (userId:number) => {
 }
 export const postUsersTC = (userId:number)=>(dispatch:Dispatch)=> {
     toogleFollowingProgress(true, userId)
-    usersAPI.postFollow(userId).then(data => {
+    followAPI.postFollow(userId).then(data => {
         if (data.resultCode === 0) {
             dispatch(follow(userId))
         }
