@@ -25,7 +25,7 @@ type ContentPropsType = RouteComponentProps<PathParamsType> & ProfileContainerPr
 
 class ProfileContainer extends Component<ContentPropsType> {
     componentDidMount() {
-        console.log(this.props.status)
+        // console.log(this.props.status)
         let userId = this.props.match.params.userID
         // usersAPI.getUserProfile(this.props.match.params.userID).then((data)=>{
         //      this.props.setUserProfile(data)
