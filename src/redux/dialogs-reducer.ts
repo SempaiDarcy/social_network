@@ -16,6 +16,7 @@ const initialState = {
 export const dialogsReducer = (state:DialogsPageType=initialState,action:ActionDispatchType) => {
     switch (action.type) {
         case "ADD-MESSAGE":
+            debugger
             const newMessage: MessageType = {
                 id:v1(),
                 message:action.message
@@ -27,6 +28,7 @@ export const dialogsReducer = (state:DialogsPageType=initialState,action:ActionD
     return state
 }
 export const addMessageAC = (message:string):AddMessageAT => {
+    debugger
     return {type:"ADD-MESSAGE",message:message}
 }
 export type AddMessageAT = {

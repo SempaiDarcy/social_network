@@ -1,29 +1,21 @@
 import s from "./Dialogs.module.css";
 import {Dialog} from "./Dialog/Dialog";
 import {DialogType, MessageType} from "../../redux/store";
-import {ChangeEvent, useRef, useState} from "react";
-import {Redirect} from "react-router-dom";
+import React from "react";
+import {AddMessageFromRedux} from "./AddMessageFromRedux";
 
 type DialogsPropsType = {
     dialogsData: DialogType[];
     messagesData: MessageType[]
     sendMessage:(message:string) => void
-    isAuth:boolean
 };
+export type FormDataType = {
+    message: string
+}
 export const Dialogs = (props: DialogsPropsType) => {
-    const [messageText, setMessageText] = useState("")
-    const newMessageElement = useRef<HTMLTextAreaElement>(null)
-    const sendMessageHandler = () => {
-        if(messageText.trim()!==''){
-            props.sendMessage(messageText)
-            setMessageText('')
-        }
-    }
-    const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setMessageText(e.target.value)
-    }
-    if(!props.isAuth) {
-        return <Redirect to={'/login'}/>
+    const sendMessageHandler = (values:FormDataType) => {
+        debugger
+        props.sendMessage(values.message)
     }
     return (
         <div className={s.dialogs}>
@@ -37,15 +29,11 @@ export const Dialogs = (props: DialogsPropsType) => {
                     return <span key={el.id} id={el.id}><div>{el.message}</div></span>
                 })}
             </div>
-            <div>
-                <textarea
-                    value={messageText}
-                    ref={newMessageElement}
-                    onChange={onMessageChange}
-                    placeholder="Enter your message"
-                ></textarea>
-                <button onClick={sendMessageHandler}>Add Message</button>
-            </div>
+            <AddMessageFromRedux onSubmit={sendMessageHandler}/>
         </div>
     );
 };
+
+
+
+

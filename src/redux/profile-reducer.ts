@@ -35,9 +35,10 @@ let initialState: ProfilePageType = {
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionDispatchType): ProfilePageType => {
     switch (action.type) {
         case "ADD-POST": {
+            debugger
             const newPost: PostType = {
                 id: v1(),
-                message: state.newPostText,
+                message: action.newPostText,
                 likes: 0
             }
             let newState = {...state, posts: [newPost, ...state.posts]}
@@ -71,8 +72,12 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return state
     }
 }
-export const addPostAC = () => {
-    return {type: "ADD-POST"} as const
+export const addPostAC = (newPostText:string) => {
+    // debugger
+    return {
+        type: "ADD-POST",
+        newPostText:newPostText
+    } as const
 }
 export const changeNewTextAC = (newText: string): ChangePostTextAT => {
     return {type: "CHANGE-NEW-TEXT", newText: newText}

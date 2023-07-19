@@ -2,7 +2,6 @@ import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {DispatchType, StateType} from "../../redux/redux-store";
 import {addMessageAC} from "../../redux/dialogs-reducer";
-import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import {ComponentType} from "react";
 
@@ -21,5 +20,5 @@ const mapDispatchToProps = (dispatch:DispatchType) => {
     }
 }
 export default compose<ComponentType>(
-    WithAuthRedirect,
+    // WithAuthRedirect,
     connect(mapStateToProps, mapDispatchToProps))(Dialogs)
