@@ -7,6 +7,7 @@ type MyPostsPropsType = {
     posts:PostType[]
     addLike:(count:number,id:string)=>void
 }
+
 export const MyPosts = (props:MyPostsPropsType) => {
 
     return (
@@ -15,7 +16,12 @@ export const MyPosts = (props:MyPostsPropsType) => {
             <div className={s.posts}>
                 {props.posts.map(elem => {
                     return (
-                        <Post key={elem.id} id={elem.id} message={elem.message} likes={elem.likes} addLike={props.addLike}/>
+                        <Post key={elem.id}
+                              id={elem.id}
+                              message={elem.message}
+                              likes={elem.likes}
+                              addLike={props.addLike}
+                        />
                     )
                 })}
             </div>
