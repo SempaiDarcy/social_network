@@ -5,6 +5,7 @@ import {loginTC} from "../../redux/auth-reducer";
 import {StateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
 
+
 export type FormDataType = {
     login: string,
     password: string,

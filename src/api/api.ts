@@ -34,13 +34,13 @@ export const authAPI = {
 }
 export const profileAPI = {
     getUserProfile(userID: string) {
-        if (!userID) userID = '27503'
-        return instance.get(`profile/${userID !== undefined ? userID : 2}`).then(res => {
+        // if (!userID) userID = '27503'
+        return instance.get(`profile/${userID}`).then(res => {
             return res.data
         })
     },
     getStatusProfile(userID:string) {
-        if(!userID) userID='27503'
+        // if(!userID) userID='27503'
         return instance.get(`profile/status/${userID}`)
     },
     updateStatusProfile(status:string) {

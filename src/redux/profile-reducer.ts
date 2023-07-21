@@ -79,9 +79,6 @@ export const addPostAC = (newPostText:string) => {
         newPostText:newPostText
     } as const
 }
-export const changeNewTextAC = (newText: string): ChangePostTextAT => {
-    return {type: "CHANGE-NEW-TEXT", newText: newText}
-}
 export const addLikeAC = (count: number, id: string) => {
     return {type: "ADD-LIKE", count: count, id: id} as const
 }

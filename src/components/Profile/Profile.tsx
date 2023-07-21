@@ -7,6 +7,8 @@ type ProfilePropsType = {
     profile:ProfileType,
     status:string
     updateStatus:(status:string)=>void
+    authUserId:number|null,
+    isAuth:boolean
 }
 export const Profile = (props:ProfilePropsType) => {
     return (

@@ -3,6 +3,7 @@ import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {ThunkDispatch} from "redux-thunk";
 import {StateType} from "./redux-store";
+import {FormAction, stopSubmit} from "redux-form";
 
 let initialState:UserType = {
     id: null,
@@ -33,7 +34,7 @@ export const setAuthUserData = (id:number|null,email:string|null,login:string|nu
     } as const
 }
 export type SetUserDataAT = ReturnType<typeof setAuthUserData>
-export type AuthReducerAT = SetUserDataAT
+export type AuthReducerAT = SetUserDataAT | FormAction
 export const setAuthTC = () =>(dispatch:Dispatch) => {
     authAPI.getAuth().then((data)=>{
         if(data.resultCode===0) {
@@ -46,6 +47,10 @@ export const loginTC = (email:string,password:string,rememberMe=false) => (dispa
     authAPI.login(email,password,rememberMe).then((data)=>{
         if (data.resultCode===0) {
             dispatch(setAuthTC())
+        }
+        else {
+            let message = data.messages.length>0 ? data.messages[0] :'Some error'
+            dispatch(stopSubmit('login',{_error:message}))
         }
     })
 }

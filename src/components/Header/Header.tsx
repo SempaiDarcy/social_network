@@ -1,6 +1,6 @@
 import s from "./Header.module.css";
 import app_icon from "../../images/symbol.png"
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import {UserType} from "../../redux/store";
 type HeaderPropsType = {
     user:UserType
@@ -14,7 +14,7 @@ export const Header = (props:HeaderPropsType) => {
             <h1 className={s.title}>SOCIAL NETWORK</h1>
         </div>
         <div className={s.header_right}>
-            {props.user.isAuth?<NavLink to={'/auth'} className={s.login_block}>{props.user.login}-<button onClick={props.logoutTC}>Log Out</button></NavLink>:"Авторизация"}
+            {props.user.isAuth?<NavLink to={'/auth'} className={s.login_block}>{props.user.login}-<button onClick={props.logoutTC}>Log Out</button></NavLink>:"Авторизация"&&<Redirect to={'login'}/>}
         </div>
     </header>
   );

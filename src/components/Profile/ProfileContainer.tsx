@@ -12,7 +12,9 @@ type ProfileContainerPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 type mapStateToPropsType = {
     profile: ProfileType,
-    status: string
+    status: string,
+    authUserId:number|null
+    isAuth:boolean
 }
 type mapDispatchToPropsType = {
     getUserProfileTC: (userID: string) => void
@@ -31,6 +33,9 @@ class ProfileContainer extends Component<ContentPropsType> {
         // usersAPI.getUserProfile(this.props.match.params.userID).then((data)=>{
         //      this.props.setUserProfile(data)
         //  })
+        if(!userId) {
+            userId=this.props.authUserId ? this.props.authUserId.toString():''
+        }
         this.props.getUserProfileTC(userId)
         this.props.getStatusProfileTC(userId)
     }
@@ -38,7 +43,7 @@ class ProfileContainer extends Component<ContentPropsType> {
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateUserStatus}/>
+            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateUserStatus} authUserId={this.props.authUserId} isAuth={this.props.isAuth}/>
         );
     }
 }
@@ -46,7 +51,9 @@ class ProfileContainer extends Component<ContentPropsType> {
 const mapStateToProps = (state: StateType): mapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        authUserId:state.auth.id,
+        isAuth:state.auth.isAuth
     }
 }
 // const WithUrlDataContainerComponent = withRouter(ProfileContainer);
