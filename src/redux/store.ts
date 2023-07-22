@@ -15,6 +15,7 @@ import {
     ToogleIsFetchingAT, ToogleIsFollowingAT
 } from "./users-reducer";
 import {SetUserDataAT} from "./auth-reducer";
+import {SetInitializedAT} from "./app-reducer";
 
 // export let store: StoreType = {
 //     _state: {
@@ -88,7 +89,7 @@ export type StoreType = {
     _rerenderAllTree: () => void
 }
 
-export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT | AddLikeAT | FollowAT | UnfollowAT | SetUserAT | SetCurrentPageAT | SetUsersTotalCountAT | ToogleIsFetchingAT |SetUserProfileAT | SetUserDataAT |ToogleIsFollowingAT | SetUserStatusProfileAT
+export type ActionDispatchType = AddPostAT | ChangePostTextAT | AddMessageAT | AddLikeAT | FollowAT | UnfollowAT | SetUserAT | SetCurrentPageAT | SetUsersTotalCountAT | ToogleIsFetchingAT |SetUserProfileAT | SetUserDataAT |ToogleIsFollowingAT | SetUserStatusProfileAT |SetInitializedAT
 
 export type RootStateType = {
     profilePage: ProfilePageType,

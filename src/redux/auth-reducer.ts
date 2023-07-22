@@ -36,7 +36,7 @@ export const setAuthUserData = (id:number|null,email:string|null,login:string|nu
 export type SetUserDataAT = ReturnType<typeof setAuthUserData>
 export type AuthReducerAT = SetUserDataAT | FormAction
 export const setAuthTC = () =>(dispatch:Dispatch) => {
-    authAPI.getAuth().then((data)=>{
+    return authAPI.getAuth().then((data)=>{
         if(data.resultCode===0) {
             let {id,login,email} = data.data
             dispatch(setAuthUserData(id,email,login,true))

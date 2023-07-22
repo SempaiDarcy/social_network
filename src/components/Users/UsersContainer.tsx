@@ -87,4 +87,6 @@ export default compose<ComponentType>(connect(mapStateToProps, {
     getUsersTC,
     deleteUsersTC,
     postUsersTC
-} as mapDispatchToPropsType),WithAuthRedirect)(UsersContainer)
+} as mapDispatchToPropsType),
+    WithAuthRedirect
+)(UsersContainer)

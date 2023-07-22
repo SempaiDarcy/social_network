@@ -35,6 +35,9 @@ class ProfileContainer extends Component<ContentPropsType> {
         //  })
         if(!userId) {
             userId=this.props.authUserId ? this.props.authUserId.toString():''
+            if(userId===''){
+                this.props.history.push('/login')
+            }
         }
         this.props.getUserProfileTC(userId)
         this.props.getStatusProfileTC(userId)
@@ -59,5 +62,5 @@ const mapStateToProps = (state: StateType): mapStateToPropsType => {
 // const WithUrlDataContainerComponent = withRouter(ProfileContainer);
 // export default WithAuthRedirect(connect (mapStateToProps,{getUserProfileTC})(WithUrlDataContainerComponent))
 export default compose<ComponentType>(
-    WithAuthRedirect,
+    // WithAuthRedirect,
     connect(mapStateToProps, {getUserProfileTC, getStatusProfileTC,updateUserStatus:updateStatusProfileTC}), withRouter)(ProfileContainer)
