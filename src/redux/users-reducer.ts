@@ -13,8 +13,7 @@ let initialState = {
 export const usersReducer = (state: UsersPageType = initialState, action: ActionDispatchType) => {
     switch (action.type) {
         case "SET-USER": {
-            let newState = {...state, users: action.users}
-            return newState;
+            return {...state, users: action.users}
         }
         case "FOLLOW": {
             let newState = {
@@ -111,10 +110,10 @@ export type FollowAT = ReturnType<typeof follow>
 export type UnfollowAT = ReturnType<typeof unfollow>
 
 
-export const getUsersTC = (param1:number,pageSize:number) => (dispatch: Dispatch) => {
+export const getUsersTC = (page:number,pageSize:number) => (dispatch: Dispatch) => {
         dispatch(toogleIsFetching(true))
-        usersAPI.getUsers(param1,pageSize).then(data => {
-            dispatch(setCurrentPage(param1))
+        usersAPI.getUsers(page,pageSize).then(data => {
+            dispatch(setCurrentPage(page))
             dispatch(toogleIsFetching(false))
             dispatch(setUsers(data.items))
             dispatch(setUsersTotalCount(data.totalCount))
