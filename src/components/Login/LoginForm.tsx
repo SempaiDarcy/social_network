@@ -1,4 +1,4 @@
-import {maxLengthCreator, requiredField} from "../../utils/validators";
+import {maxLengthCreator, requiredField} from "../../utils/validators/validator";
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControls/FormsControls";

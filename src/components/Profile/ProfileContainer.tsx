@@ -6,7 +6,6 @@ import {getStatusProfileTC, getUserProfileTC, updateStatusProfileTC} from "../..
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {StateType} from "../../redux/redux-store";
 import {compose} from "redux";
-import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 type ProfileContainerPropsType = mapStateToPropsType & mapDispatchToPropsType
 
@@ -45,6 +44,7 @@ class ProfileContainer extends Component<ContentPropsType> {
 
 
     render() {
+        console.log('Render Profile')
         return (
             <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateUserStatus} authUserId={this.props.authUserId} isAuth={this.props.isAuth}/>
         );
@@ -52,6 +52,7 @@ class ProfileContainer extends Component<ContentPropsType> {
 }
 
 const mapStateToProps = (state: StateType): mapStateToPropsType => {
+    // console.log('mapStateToProps Profile')
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
