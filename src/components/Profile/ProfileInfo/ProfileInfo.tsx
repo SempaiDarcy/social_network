@@ -3,7 +3,7 @@ import wall from "../../../images/wall.jpg";
 import s from './ProfileInfo.module.css';
 import {ProfileType} from "../../../redux/store";
 import {Loader} from "../../common/Loader/Loader";
-import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
+import {ProfileStatusWithHooks} from "./ProfileStatus/ProfileStatusWithHooks";
 
 type ProfileInfoPropsType = {
     profile: ProfileType
@@ -34,7 +34,8 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
                             <div className={s.name}>Name: {props.profile.fullName}</div>
                             <div className={s.data}>{props.profile.aboutMe}</div>
                             <div className={s.data}>{props.profile.contacts.github}</div>
-                            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                            {/*<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>*/}
+                            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
                         </td>
                     </tr>
                     </tbody>
