@@ -6,6 +6,10 @@ type ProfileStatusPropsType = {
 }
 
 export class ProfileStatus extends Component<ProfileStatusPropsType> {
+    shouldComponentUpdate(nextProps: Readonly<ProfileStatusPropsType>, nextState: Readonly<{}>, nextContext: any): boolean {
+        return nextProps.status!==this.props.status
+    }
+
     state = {
         editMode: false,
         status: this.props.status
@@ -39,12 +43,12 @@ export class ProfileStatus extends Component<ProfileStatusPropsType> {
             this.setState({
                 status: this.props.status
             })
-            console.log('componentDidUpdate')
+            // console.log('componentDidUpdate')
         }
     }
 
     render() {
-        // console.log('render')
+        console.log('render')
         return (
             <div>
                 STATUS:

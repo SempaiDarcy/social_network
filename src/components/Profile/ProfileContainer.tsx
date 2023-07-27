@@ -26,6 +26,10 @@ type PathParamsType = {
 type ContentPropsType = RouteComponentProps<PathParamsType> & ProfileContainerPropsType
 
 class ProfileContainer extends Component<ContentPropsType> {
+    // shouldComponentUpdate(nextProps: Readonly<ContentPropsType>, nextState: Readonly<mapStateToPropsType>, nextContext: any): boolean {
+    //     return nextProps !==this.props && nextState!==this.state
+    // }
+
     componentDidMount() {
         // console.log(this.props.status)
         let userId = this.props.match.params.userID
