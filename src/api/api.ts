@@ -1,5 +1,12 @@
 import axios from "axios";
 
+export type ResponseType<D = {}> = {
+    data: D
+    fieldsErrors: Array<{ field: string, error: string }>
+    messages: string[]
+    resultCode: number
+}
+
 const instance = axios.create({
     withCredentials:true,
     baseURL:'https://social-network.samuraijs.com/api/1.0/',
@@ -45,6 +52,35 @@ export const profileAPI = {
     },
     updateStatusProfile(status:string) {
         return instance.put(`profile/status`,{status:status})
+    },
+    updatePhoto(photo: File) {
+        const formData = new FormData()
+        formData.append('image', photo)
+        return instance.put<UpdatePhotoResponseType>('profile/photo', formData, {
+            headers: {
+                'Content-Type' : 'multipart/form-data'
+            }
+        })
+    },
+    updateProfile(profile: ProfileDataFormDataType) {
+        const {fullName, aboutMe, lookingForAJob, lookingForAJobDescription, website, vk, github, instagram, twitter, youtube, mainLink, facebook} = profile
+        const response = {
+            fullName,
+            aboutMe,
+            lookingForAJob,
+            lookingForAJobDescription,
+            contacts: {
+                website,
+                facebook,
+                vk,
+                github,
+                instagram,
+                twitter,
+                youtube,
+                mainLink
+            }
+        }
+        return instance.put('profile', response)
     }
 }
 export const followAPI = {
@@ -58,4 +94,24 @@ export const followAPI = {
             return res.data
         })
     }
+}
+export type UpdatePhotoResponseType = Omit<ResponseType<{photos: PhotosType}>, 'fieldsErrors'>
+
+export type PhotosType = {
+    large: string
+    small: string
+}
+export type ProfileDataFormDataType = {
+    fullName: string
+    aboutMe: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    facebook: string
+    website: string
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: string
+    github: string
+    mainLink: string
 }

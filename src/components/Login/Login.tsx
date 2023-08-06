@@ -1,38 +1,43 @@
-import React from 'react';
-import {LoginReduxForm} from "./LoginForm";
+import s from './Login.module.css'
+import React, {FC} from "react";
 import {connect} from "react-redux";
-import {loginTC} from "../../redux/auth-reducer";
-import {StateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
+import {FormDataType, LoginReduxForm} from "./LoginForm/LoginForm";
+import {StateType} from "../../redux/redux-store";
+import {loginTC} from "../../redux/auth-reducer";
 
 
-export type FormDataType = {
-    login: string,
-    password: string,
-    rememberMe: boolean
-}
 type LoginType = {
-    loginTC: (email: string, password: string, rememberMe: boolean) => void
+    loginTC: (email: string, password: string, rememberMe: boolean, captcha?: string) => void
+    isAuth: boolean
+    captchaURL: string | null
 }
 type mapStateToPropsType = {
     isAuth: boolean
+    captchaURL: string | null
 }
-const Login = (props: LoginType & mapStateToPropsType) => {
-    const onSubmit = (formData: FormDataType) => {
-        props.loginTC(formData.login, formData.password, formData.rememberMe)
-    }
-    if (props.isAuth) {
-        return <Redirect to={'/profile'}/>
-    }else return (
-        <div>
-            <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
-        </div>)
-}
-const mapStateToProps = (state: StateType) => {
+const mapStateToProps = (state: StateType): mapStateToPropsType => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        captchaURL: state.auth.captchaURL
     }
+}
+const Login:FC<LoginType> = ({loginTC, isAuth, captchaURL}) => {
+    const onSubmit = (data: FormDataType) => {
+        loginTC(data.login, data.password, data.rememberMe, data.captcha)
+    }
+    if (isAuth) {
+        return <Redirect to='/profile'/>
+    }
+    return (
+        <div className='content'>
+            <div className={s.container}>
+                <h2 className={s.title}> LOGIN </h2>
+                <LoginReduxForm onSubmit={onSubmit} captchaURL={captchaURL}/>
+            </div>
+        </div>
+    )
 }
 export default connect(mapStateToProps, {loginTC})(Login)
+
 

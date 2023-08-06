@@ -1,0 +1,8 @@
+.status {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+span {
+    cursor: pointer;
+}

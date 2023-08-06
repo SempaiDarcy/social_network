@@ -8,7 +8,7 @@ import {
 import React, {Component, ComponentType} from 'react';
 import {UsersType} from "../../redux/store";
 import {Users} from "./User/Users";
-import {Loader} from "../common/Loader/Loader";
+import {Preloader} from "../common/Preloader/Preloader";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import {
@@ -44,11 +44,10 @@ class UsersContainer extends Component<UserPropsType> {
         this.props.getUsersTC(pageNumber, this.props.pageSize)
     }
 
-    // в классовой компоненте обязателен метод render() который будет возвращать тот самый jsx
     render() {
         return <>
             <h1>Users</h1>
-            {this.props.isFetching ? <Loader/> :
+            {this.props.isFetching ? <Preloader/> :
                 <Users
                     users={this.props.users}
                     pageSize={this.props.pageSize}
@@ -63,16 +62,6 @@ class UsersContainer extends Component<UserPropsType> {
     }
 }
 
-// const mapStateToProps = (state: StateType) => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress,
-//     }
-// }
 const mapStateToProps = (state: StateType) => {
     console.log('mapStateToProps USERS')
     return {
@@ -85,10 +74,10 @@ const mapStateToProps = (state: StateType) => {
     }
 }
 export default compose<ComponentType>(connect(mapStateToProps, {
-    setCurrentPage,
-    getUsersTC,
-    deleteUsersTC,
-    postUsersTC
-} as mapDispatchToPropsType),
+        setCurrentPage,
+        getUsersTC,
+        deleteUsersTC,
+        postUsersTC
+    } as mapDispatchToPropsType),
     WithAuthRedirect
 )(UsersContainer)

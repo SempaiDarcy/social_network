@@ -1,4 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
+import s from './ProfileStatusWithHooks.module.css'
+import {TextField} from "@material-ui/core";
 type ProfileStatusPropsType = {
     status: string
     updateStatus: (status: string) => void
@@ -21,16 +23,16 @@ export const ProfileStatusWithHooks = (props:ProfileStatusPropsType) => {
     }
     return (
         <div>
-            STATUS:
-            {
-                !editMode &&
-                <div><span onDoubleClick={activateEditMode}>{props.status||"------"}</span></div>
-            }
-            {
-                editMode && <div>
-                    <input autoFocus={true} onBlur={deactivateEditMode} value={status} onChange={onChangeStatus}/>
-                </div>
-            }
+            <h3 className={s.status}>STATUS:
+                {
+                    !editMode &&
+                    <div><span onDoubleClick={activateEditMode}>{props.status || "------"}</span></div>
+                }
+                {
+                    editMode && <div>
+                        <TextField autoFocus={true} onBlur={deactivateEditMode} value={status} onChange={onChangeStatus}/>
+                    </div>
+                }</h3>
         </div>
     );
 };

@@ -9,7 +9,8 @@ let initialState:UserType = {
     id: null,
     email: null,
     login: null,
-    isAuth:false
+    isAuth:false,
+    captchaURL: null
 }
 
 export const authReducer = (state= initialState,action:ActionDispatchType):UserType => {

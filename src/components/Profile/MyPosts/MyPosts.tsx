@@ -12,7 +12,7 @@ export const MyPosts = (props:MyPostsPropsType) => {
 
     return (
         <>
-            <AddPostContainer/>
+            <div className={s.addPost}><AddPostContainer/></div>
             <div className={s.posts}>
                 {props.posts.map(elem => {
                     return (

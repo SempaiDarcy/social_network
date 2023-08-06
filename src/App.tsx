@@ -1,17 +1,21 @@
 import {Navigation} from "./components/Navigation/Navigation";
-import {Route, Switch, withRouter} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+import {HashRouter, Route, Switch, withRouter} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import "./App.css";
-import Login from "./components/Login/Login";
-import {Component, ComponentType} from "react";
-import {connect} from "react-redux";
+import {Component, ComponentType, lazy} from "react";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {setInitialTC} from "./redux/app-reducer";
-import {StateType} from "./redux/redux-store";
-import {Loader} from "./components/common/Loader/Loader";
+import {StateType, store} from "./redux/redux-store";
+import {Preloader} from "./components/common/Preloader/Preloader";
+import {withSuspense} from "./hoc/withSuspense";
+import {ThemeProvider} from "@material-ui/core";
+import {theme} from "./utils/constants/appTheme";
+import Login from "./components/Login/Login";
+
+const DialogsContainer = lazy(()=>import('./components/Dialogs/DialogsContainer'))
+const ProfileContainer = lazy(()=>import('./components/Profile/ProfileContainer'))
+const UsersContainer = lazy(()=>import('./components/Users/UsersContainer'))
 
 type mapDispatchToPropsType = {
     setInitialTC:()=>void
@@ -19,13 +23,21 @@ type mapDispatchToPropsType = {
 type mapStateToPropsType = {
     isInitial:boolean
 }
-class App extends Component<mapDispatchToPropsType&mapStateToPropsType> {
+class App extends Component<mapDispatchToPropsType & mapStateToPropsType> {
+    catchAllErrors = (promiseRejectionEvent: PromiseRejectionEvent) => {
+        alert("Some error occurred")
+    }
     componentDidMount() {
         this.props.setInitialTC()
+        window.addEventListener("unhandledrejection", this.catchAllErrors);
     }
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.catchAllErrors)
+    }
+
     render() {
         if (!this.props.isInitial) {
-            return <Loader/>
+            return <Preloader/>
         }
         return (
             <div className="app-wrapper">
@@ -33,23 +45,29 @@ class App extends Component<mapDispatchToPropsType&mapStateToPropsType> {
                 <Navigation/>
                 <div className="app-wrapper-content">
                     <Switch>
-                        <Route path={'/login'} render={() =>
-                            <Login/>
-                        }/>
                         <Route
                             path={"/profile/:userID?"}
-                            render={() => (
-                                <ProfileContainer/>
-                            )}
+                            render={withSuspense(ProfileContainer)}
                         />
                         <Route
                             path={"/dialogs"}
-                            render={() =>
-                                <DialogsContainer/>}/>
-                        <Route path={"/users"} render={() => (<UsersContainer/>)}/>
+                            render={withSuspense(DialogsContainer)}
+                        />
+                        <Route path={"/users"}
+                               render={withSuspense(UsersContainer)}
+                        />
                         <Route path={'/news'} render={() => <div>news</div>}/>
                         <Route path={'/music'} render={() => <div>music</div>}/>
                         <Route path={'/settings'} render={() => <div>settings</div>}/>
+                        <Route exact path="/login" render={withSuspense(Login)}/>
+                        <Route exact path={'/'} render={withSuspense(ProfileContainer)}
+                        />
+                        <Route path='*' render={() => <div className="content" style={{
+                            display: "flex",
+                            alignItems: "flex-start",
+                            width: "100%",
+                            justifyContent: "center"
+                        }}><h1>404: PAGE NOT FOUND</h1></div>}/>
                     </Switch>
                 </div>
             </div>
@@ -61,5 +79,18 @@ const mapStateToProps = (state:StateType) => {
         isInitial:state.app.initialized
     }
 }
-export default compose <ComponentType>(
+const AppContainer = compose <ComponentType>(
     connect(mapStateToProps, {setInitialTC}),withRouter)(App);
+
+const MainApp = () => {
+    return (
+        <Provider store={store}>
+            <ThemeProvider theme={theme}>
+                <HashRouter>
+                    <AppContainer/>
+                </HashRouter>
+            </ThemeProvider>
+        </Provider>
+    )
+}
+export default MainApp

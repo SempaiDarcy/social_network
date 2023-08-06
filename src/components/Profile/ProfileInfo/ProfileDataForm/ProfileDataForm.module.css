@@ -1,0 +1,9 @@
+.form{
+margin-top: 20px;
+}
+.error{
+    color: red;
+    margin: 10px 5px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 12px;
+}

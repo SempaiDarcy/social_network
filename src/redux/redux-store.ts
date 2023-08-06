@@ -6,7 +6,7 @@ import {authReducer} from "./auth-reducer";
 import thunk, {ThunkDispatch} from "redux-thunk";
 import {reducer as formReducer} from "redux-form";
 import {appReducer} from "./app-reducer";
-import {ActionDispatchType} from "./store";
+import {ActionDispatchType} from "./types";
 
 const reducers = combineReducers({
     profilePage: profileReducer,

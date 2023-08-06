@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import s from "./Navigation.module.css";
-import nav from "./Navigation.module.css"
 import messages from "./icons/messages.png"
 import news from "./icons/news.png"
 import profile from "./icons/profile.png"

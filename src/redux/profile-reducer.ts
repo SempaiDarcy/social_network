@@ -1,7 +1,11 @@
-import {ActionDispatchType, PostType, ProfilePageType, ProfileType} from "./store";
+import {PostType, ProfilePageType, ProfileType} from "./store";
 import {v1} from "uuid";
 import {Dispatch} from "redux";
-import {profileAPI} from "../api/api";
+import {PhotosType, profileAPI, ProfileDataFormDataType} from "../api/api";
+import {ActionDispatchType} from "./types";
+import {ThunkDispatch} from "redux-thunk";
+import {StateType} from "./redux-store";
+import {FormAction, stopSubmit} from "redux-form";
 
 let initialState: ProfilePageType = {
     newPostText: '',
@@ -94,14 +98,20 @@ export const setStatusProfile = (status: string) => {
         status: status
     } as const
 }
-export type SetUserStatusProfileAT = ReturnType<typeof setStatusProfile>
-export type SetUserProfileAT = ReturnType<typeof setUserProfile>
-export type AddPostAT = ReturnType<typeof addPostAC>
+export const changePhotosAC = (photos: PhotosType) => {
+    return {type: 'PROFILE/UPDATE_PHOTOS', photos} as const
+}
 export type ChangePostTextAT = {
     type: "CHANGE-NEW-TEXT",
     newText: string
 }
+export type SetUserStatusProfileAT = ReturnType<typeof setStatusProfile>
+export type SetUserProfileAT = ReturnType<typeof setUserProfile>
+export type AddPostAT = ReturnType<typeof addPostAC>
 export type AddLikeAT = ReturnType<typeof addLikeAC>
+type ChangePhotosAT = ReturnType<typeof changePhotosAC>
+export type ProfileReducerAT = SetUserStatusProfileAT | SetUserProfileAT | AddPostAT
+    | AddLikeAT | ChangePhotosAT | ChangePostTextAT
 export const getUserProfileTC = (userID: string) => (dispatch: Dispatch) => {
     profileAPI.getUserProfile(userID).then((data) => {
         dispatch(setUserProfile(data))
@@ -118,4 +128,19 @@ export const updateStatusProfileTC = (status: string) => (dispatch: Dispatch) =>
         if (res.data.resultCode === 0)
             dispatch(setStatusProfile(status))
     })
+}
+export const savePhotoTC = (photo: File) => async (dispatch: Dispatch<ActionDispatchType>) => {
+    const response = await profileAPI.updatePhoto(photo)
+    if (response.data.resultCode === 0) {
+        dispatch(changePhotosAC(response.data.data.photos))
+    }
+}
+export const saveProfileTC = (profile: ProfileDataFormDataType) => async (dispatch: ThunkDispatch<StateType, any, ActionDispatchType | FormAction>, getState: () => StateType) => {
+    const userId = getState().profilePage.profile.userId
+    const response = await profileAPI.updateProfile(profile)
+    if (response.data.resultCode === 0) {
+        dispatch(getUserProfileTC(userId.toString()))
+    } else {
+        dispatch(stopSubmit('profileInfoForm', {_error: response.data.messages[0]}))
+    }
 }

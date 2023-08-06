@@ -1,38 +1,67 @@
-import s from "./Dialogs.module.css";
-import {Dialog} from "./Dialog/Dialog";
-import {DialogType, MessageType} from "../../redux/store";
-import React from "react";
-import {AddMessageFromRedux} from "./AddMessageFromRedux";
+import React, {FC} from 'react';
+import s from "./Dialogs.module.css"
+import {DialogsItems} from "./DialogsItems/DialogsItems";
+import {DialogsMessages} from "./DialogsMessages/DialogsMessages";
+import {MessageFormDataType, MessageReduxForm} from "./MessageForm";
 
-type DialogsPropsType = {
-    dialogsData: DialogType[];
-    messagesData: MessageType[]
-    sendMessage:(message:string) => void
-};
-export type FormDataType = {
-    message: string
+export type DialogsProps = {
+    dialogsData: DialogsDataType[]
+    messagesData: MessagesDataType[]
+    sendMessage: (message: string) => void
 }
-export const Dialogs = (props: DialogsPropsType) => {
-    const sendMessageHandler = (values:FormDataType) => {
-        debugger
-        props.sendMessage(values.message)
+
+export type DialogsDataType = {
+    id: string
+    name: string
+    avatar: string
+}
+
+export type MessagesDataType = {
+    id: string
+    message: string
+    avatar?: string
+}
+
+export const Dialogs: FC<DialogsProps> = ({
+                                              dialogsData,
+                                              messagesData,
+                                              sendMessage
+                                          }) => {
+
+    const sendMessageHandler = (values: MessageFormDataType) => {
+        sendMessage(values.message)
     }
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogs_items}>
-                {props.dialogsData.map((el) => {
-                    return <Dialog key={el.id} id={el.id} name={el.name}/>;
-                })}
-            </div>
-            <div className={s.messages}>
-                {props.messagesData.map((el)=>{
-                    return <span key={el.id} id={el.id}><div>{el.message}</div></span>
-                })}
-            </div>
-            <AddMessageFromRedux onSubmit={sendMessageHandler}/>
+        <div>
+            <div className={s.dialogsContainer}>
+                </div>
+                <div className={s.dialogs}>
+                    <div className={s.dialogsItems}>
+                        {dialogsData.map(elem => {
+                            return (
+                                <DialogsItems id={elem.id} name={elem.name} avatar={elem.avatar} key={elem.id}/>
+                            )
+                        })}
+
+                    </div>
+                    <div className={s.dialogsMessages}>
+                        {messagesData.map(elem => {
+                            return (
+                                <DialogsMessages
+                                    message={elem.message}
+                                    avatar={elem.avatar}
+                                    key={elem.id}
+                                />
+                            )
+                        })}
+                    </div>
+                    <div className={s.addDialogContainer}>
+                        <MessageReduxForm onSubmit={sendMessageHandler}/>
+                    </div>
+                </div>
         </div>
-    );
-};
+    )
+}
 
 
 
